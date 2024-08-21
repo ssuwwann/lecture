@@ -92,7 +92,7 @@
   <div class="vector-img">
     <img src="${pageContext.request.contextPath}/resources/images/vector.png" alt="">
     <label for="profileImageInput">
-      <div id="profileImageWrapper" class="sec-title">
+      <div class="sec-title">
         <img src="${pageContext.request.contextPath}/resources/images/member/카메라.png" alt="">
       </div>
     </label>

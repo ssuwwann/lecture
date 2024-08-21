@@ -70,14 +70,12 @@ public class MemberController {
     String password = request.getParameter("password") == null ? "" : request.getParameter("password");
     Collection<Part> parts = request.getParts();
 
-
     MemberRequestDTO dto = MemberRequestDTO.builder()
             .id(memberId)
             .email(email)
             .password(password)
             .nickname(nickname)
             .build();
-    System.out.println(dto);
 
     memberService.updateMemberByMemberid(dto, parts);
     return new ResponseEntity(HttpStatus.OK);

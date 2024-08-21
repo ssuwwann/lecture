@@ -107,16 +107,18 @@
             <img id="profileImage" src="${pageContext.request.contextPath}/resources/images/member/금발카리나.jpg"
                  alt="프로필 이미지">
           </div>
+          <label for="profileImageInput">
+            <div>
+              <img src="${pageContext.request.contextPath}/resources/images/member/카메라.png" alt="">
+            </div>
+          </label>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-8">
         <form action="" method="post" enctype="multipart/form-data">
-          <label for="profileImageInput">
-            <img src="${pageContext.request.contextPath}/resources/images/member/카메라.png" alt="">
-            <input type="file" name="profileImage" id="profileImageInput" style="display: none">
-          </label>
+          <input type="file" name="profileImage" id="profileImageInput" style="display: none">
           <div class="row">
             <div class="form-group col-sm-6">
               <label for="email">이메일</label>

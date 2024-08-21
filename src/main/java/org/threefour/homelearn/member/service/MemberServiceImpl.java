@@ -85,9 +85,8 @@ public class MemberServiceImpl implements MemberService {
     // 이미지도 공백인 경우 변경 x
     //fileUtil
     String password = dto.getPassword();
-    if (password.length() > 0)
+    if (password != null)
       dto.setPassword(passwordEncoder.encode(dto.getPassword()));
-    else dto.setPassword(null);
 
     memberMapper.updateMemberByMemberid(dto);
 
@@ -98,7 +97,6 @@ public class MemberServiceImpl implements MemberService {
     for (Part part : parts) {
       if (attachFiles.isEmpty()) {
         List<AttachFile> updateAttachFile = fileUtil.fileSave(parts, dto.getId());
-        System.out.println("업데이트 파일: " + updateAttachFile);
         fileMapper.insertFile(updateAttachFile);
         break;
       }
