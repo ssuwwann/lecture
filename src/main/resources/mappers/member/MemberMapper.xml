@@ -1,0 +1,27 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.threefour.homelearn.member.mapper.MemberMapper">
+
+    <sql id="memberColumns">
+        id, email, password, nickname
+    </sql>
+
+    <insert id="insertMember" parameterType="MemberRequestDTO" useGeneratedKeys="true" keyProperty="id">
+        insert into member (<include refid="memberColumns"/>)
+        values (#{id}, #{email}, #{password}, #{nickname})
+    </insert>
+
+    <select id="findByUsername" resultType="MemberResponseDTO">
+        select id, email, password, nickname, created_at, modified_at
+        from member
+        where email = #{username}
+        and delete_yn =1;
+    </select>
+
+    <update id="updateMemberByMemberid">
+
+    </update>
+
+</mapper>
