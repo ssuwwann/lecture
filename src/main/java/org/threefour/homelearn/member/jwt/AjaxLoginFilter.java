@@ -98,7 +98,7 @@ public class AjaxLoginFilter extends AbstractAuthenticationProcessingFilter {
 
   @Override
   protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
-    System.out.println("로그인 실패인가");
+    System.out.println("로그인 실패");
     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
   }
 }

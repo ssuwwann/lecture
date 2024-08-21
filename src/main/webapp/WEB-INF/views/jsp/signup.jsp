@@ -107,18 +107,25 @@
         <form class="sl-form" method="post" enctype="multipart/form-data">
           <input type="file" name="profileImage" id="profileImageInput" style="display: none">
           <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="email" placeholder="example@gmail.com" required>
+            <label for="email">이메일</label>
+            <input type="email" name="email" placeholder="example@gmail.com" id="email" required>
+            <div class="email-success-message hide">사용할 수 있는 아이디입니다.</div>
+            <div class="email-failure-message hide">사용 중인 아이디입니다.</div>
           </div>
           <div class="form-group">
-            <label>Nickname</label>
-            <input type="text" name="nickname" placeholder="Jhone Doe" required>
+            <label for="nickname">닉네임</label>
+            <input type="text" name="nickname" placeholder="Jhone Doe" id="nickname" required>
           </div>
           <div class="form-group">
-            <label>Password</label>
-            <input type="password" name="password" placeholder="Password" required>
+            <label for="password">비밀번호</label>
+            <input type="password" name="password" placeholder="Password" id="password" required>
+            <div class="password-failure-message hide">8글자 이상, 영문, 숫자, 특수문자(@$!%*#?&)를 입력해주세요.</div>
           </div>
-
+          <div class="form-group">
+            <label for="password2">비밀번호 확인</label>
+            <input type="password" name="password2" placeholder="Password" id="password2" required>
+            <div class="password-mismatch-message hide">비밀번호가 일치하지 않습니다.</div>
+          </div>
           <%--일반인 인지 글쓴이 인지--%>
           <div>
             <label>강의를 올리고 싶으시면 선택하세요</label>
