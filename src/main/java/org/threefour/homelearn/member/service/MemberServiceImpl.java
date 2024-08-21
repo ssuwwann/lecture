@@ -39,7 +39,6 @@ public class MemberServiceImpl implements MemberService {
   @Override
   public int addMember(MemberRequestDTO dto, @RequestParam("profileImage") Collection<Part> parts) {
 
-
     // Member 추가
     dto.setPassword(passwordEncoder.encode(dto.getPassword()));
     memberMapper.insertMember(dto);
@@ -67,23 +66,17 @@ public class MemberServiceImpl implements MemberService {
     int result = memberRoleMapper.insertMemberRole(memberRole);
 
     if (result > 0) {
-      for (Part part : parts) {
-        if (part.getSubmittedFileName() != null && part.getSubmittedFileName().length() > 1) {
-          List<AttachFile> attachFiles = fileUtil.fileSave(parts, dto.getId());
-
-          fileMapper.insertFile(attachFiles);
-        }
-      }
+      List<AttachFile> attachFiles = fileUtil.fileSave(parts, dto.getId());
+      if (attachFiles != null)
+        fileMapper.insertFile(attachFiles);
     }
 
     return result;
   }
 
   @Override
-  public MemberResponseDTO updateMemberByMemberid(MemberRequestDTO dto, Collection<Part> parts) {
-    // 비밀번호가 공백일 땐, 아닐 때는 매퍼에서 처리
-    // 이미지도 공백인 경우 변경 x
-    //fileUtil
+  public void updateMemberByMemberid(MemberRequestDTO dto, Collection<Part> parts) {
+
     String password = dto.getPassword();
     if (password != null)
       dto.setPassword(passwordEncoder.encode(dto.getPassword()));
@@ -93,34 +86,26 @@ public class MemberServiceImpl implements MemberService {
     List<AttachFile> attachFiles = fileMapper.selectFileByMemberId(dto.getId());
 
     // 업데이트시 기본 -> 이미지변경
-    boolean flag = false;
-    for (Part part : parts) {
-      if (attachFiles.isEmpty()) {
-        List<AttachFile> updateAttachFile = fileUtil.fileSave(parts, dto.getId());
+    if (attachFiles.isEmpty()) {
+      List<AttachFile> updateAttachFile = fileUtil.fileSave(parts, dto.getId());
+      if (updateAttachFile != null)
         fileMapper.insertFile(updateAttachFile);
-        break;
-      }
-      for (AttachFile attachFile : attachFiles) {
-        if (attachFile.getOriginalName() == part.getSubmittedFileName()) {
-          flag = true;
-          break;
+      return;
+    }
+
+    // 수정
+    for (AttachFile attachFile : attachFiles) {
+      File f = new File(attachFile.getFilePath() + File.separator + attachFile.getSaveName());
+      if (f.exists()) {
+        List<AttachFile> updateAttachFile = fileUtil.fileSave(parts, dto.getId());
+        if (updateAttachFile != null) {
+          fileMapper.insertFile(updateAttachFile);
+          fileMapper.deleteFile(attachFile.getSaveName());
+          f.delete();
         }
       }
     }
 
-    // 수정
-    if (!flag && !attachFiles.isEmpty()) {
-      for (AttachFile attachFile : attachFiles) {
-        File f = new File(attachFile.getFilePath() + File.separator + attachFile.getSaveName());
-        if (f.exists()) {
-          f.delete();
-          fileMapper.deleteFile(attachFile.getSaveName());
-          List<AttachFile> updateAttachFile = fileUtil.fileSave(parts, dto.getId());
-          fileMapper.insertFile(updateAttachFile);
-          break;
-        }
-      }
-    }
-    return null;
   }
+
 }

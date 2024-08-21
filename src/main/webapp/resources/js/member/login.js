@@ -1,4 +1,4 @@
-import {getAccessToken, SERVER_API} from "../home/request.js";
+import {getAccessToken, SERVER_API} from "../common/request.js";
 
 
 const loginBtnEle = document.querySelector("#loginBtn");

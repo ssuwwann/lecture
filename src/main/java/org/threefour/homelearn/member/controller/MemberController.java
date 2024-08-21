@@ -63,7 +63,7 @@ public class MemberController {
   }
 
   @PostMapping("/mypage/{memberid}")
-  public ResponseEntity<Void> updateMember(@PathVariable("memberid") Long memberId, HttpServletRequest request) throws ServletException, IOException {
+  public String updateMember(@PathVariable("memberid") Long memberId, HttpServletRequest request) throws ServletException, IOException {
     // 이미지 처리,
     String email = request.getParameter("email");
     String nickname = request.getParameter("nickname");
@@ -78,7 +78,7 @@ public class MemberController {
             .build();
 
     memberService.updateMemberByMemberid(dto, parts);
-    return new ResponseEntity(HttpStatus.OK);
+    return "redirect:/members/mypage/" + memberId;
   }
 
   @GetMapping("/cookies")

@@ -1,4 +1,4 @@
-import {getBasicDate, getNewAccessToken, SERVER_API} from "./request.js";
+import {getBasicDate, SERVER_API} from "./request.js";
 
 await getBasicDate();
 
@@ -10,4 +10,3 @@ if (data) {
   loginAEle.innerText = data.nickname;
   loginAEle.setAttribute('href', `${SERVER_API}/members/mypage/${memberid}`);
 }
-

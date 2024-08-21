@@ -28,6 +28,11 @@ public class FileUtil {
     if (!f.exists()) f.mkdirs();
 
     for (Part part : parts) {
+
+      if (part.getName().startsWith("profileImage")) {
+        if (part.getSubmittedFileName().isEmpty()) return null;
+      }
+
       String originalName = part.getSubmittedFileName();
       String saveFileName = UUID.randomUUID().toString().substring(0, 8) + "_" + originalName;
       if (part.getSubmittedFileName() != null) {

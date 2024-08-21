@@ -10,7 +10,6 @@ export const getBasicDate = async () => {
   })
   try {
     const basicData = await result.json();
-    console.log(basicData)
     localStorage.setItem('member', JSON.stringify(basicData));
   } catch (err) {
     console.log(err)

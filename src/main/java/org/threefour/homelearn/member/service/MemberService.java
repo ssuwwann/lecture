@@ -9,5 +9,5 @@ import java.util.Collection;
 public interface MemberService {
   int addMember(MemberRequestDTO dto, Collection<Part> parts);
 
-  MemberResponseDTO updateMemberByMemberid(MemberRequestDTO dto, Collection<Part> parts);
+  void updateMemberByMemberid(MemberRequestDTO dto, Collection<Part> parts);
 }
