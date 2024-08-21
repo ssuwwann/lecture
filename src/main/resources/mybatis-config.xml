@@ -5,16 +5,8 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias alias="CourseVO" type="org.threefour.homelearn.course.domain.CourseVO"/>
-		<typeAlias alias="Course" type="org.threefour.homelearn.course.domain.Course"/>
-		<typeAlias alias="Pager" type="org.threefour.homelearn.course.domain.Pager"/>
-
-		<typeAlias alias="Cart" type="org.threefour.homelearn.cart.domain.Cart"/>
-		<typeAlias alias="CartCourse" type="org.threefour.homelearn.cart.domain.CartCourse"/>
 	</typeAliases>
 	 
 	<mappers>
-		<mapper resource="CourseMapper.xml"/>
-		<mapper resource="CartMapper.xml"/>
 	</mappers>
 </configuration>
