@@ -24,12 +24,6 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
-	<context:component-scan base-package="org.threefour.homelearn.course.etc" />
-	<context:component-scan base-package="org.threefour.homelearn.course.controller" />
-	<context:component-scan base-package="org.threefour.homelearn.cart.controller" />
-	<context:component-scan base-package="org.threefour.homelearn.order.controller" />
-	<context:component-scan base-package="org.threefour.homelearn.payment.controller" />
 <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
   <beans:property name="maxUploadSizePerFile" value="3145728"></beans:property>
   
