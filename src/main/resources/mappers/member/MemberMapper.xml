@@ -20,8 +20,16 @@
         and delete_yn =1;
     </select>
 
-    <update id="updateMemberByMemberid">
-
+    <update id="updateMemberByMemberid" parameterType="MemberRequestDTO">
+        <choose>
+            <when test="password != null">
+                update member set password = #{password}, nickname = #{nickname}, modified_at = current_timestamp where
+                id = #{id}
+            </when>
+            <otherwise>
+                update member set nickname = #{nickname}, modified_at = current_timestamp where id = #{id}
+            </otherwise>
+        </choose>
     </update>
 
 </mapper>

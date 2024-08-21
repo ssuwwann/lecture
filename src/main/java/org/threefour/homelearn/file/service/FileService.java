@@ -12,7 +12,9 @@ import java.util.List;
 public interface FileService {
 
   List<AttachFile> getFileByMemberId(Long memberId);
+
   int addFile(List<AttachFile> files);
-  int removeFile(FileRequestDTO dto);
+
+  int removeFile(String saveName);
 
 }

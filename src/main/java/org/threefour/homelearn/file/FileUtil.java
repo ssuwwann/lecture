@@ -46,4 +46,8 @@ public class FileUtil {
     }
     return attachFileList;
   }
+
+  /*public int removeFile(Long memberId) {
+
+  }*/
 }

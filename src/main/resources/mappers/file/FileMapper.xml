@@ -15,7 +15,7 @@
         </foreach>
     </insert>
 
-    <delete id="deleteFile" parameterType="FileRequestDTO">
+    <delete id="deleteFile">
         delete from file where save_name = #{saveName}
     </delete>
 </mapper>

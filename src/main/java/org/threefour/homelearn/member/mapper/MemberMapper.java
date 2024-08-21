@@ -8,6 +8,6 @@ public interface MemberMapper {
 
   MemberResponseDTO findByUsername(String username);
 
-  MemberResponseDTO updateMemberByMemberid(MemberRequestDTO dto);
+  int updateMemberByMemberid(MemberRequestDTO dto);
 
 }

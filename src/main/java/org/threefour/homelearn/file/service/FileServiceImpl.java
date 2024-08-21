@@ -27,7 +27,7 @@ public class FileServiceImpl implements FileService {
   }
 
   @Override
-  public int removeFile(FileRequestDTO dto) {
-    return fileMapper.deleteFile(dto);
+  public int removeFile(String saveName) {
+    return fileMapper.deleteFile(saveName);
   }
 }

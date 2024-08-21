@@ -10,5 +10,5 @@ public interface FileMapper {
 
   int insertFile(List<AttachFile> files);
 
-  int deleteFile(FileRequestDTO dto);
+  int deleteFile(String saveName);
 }

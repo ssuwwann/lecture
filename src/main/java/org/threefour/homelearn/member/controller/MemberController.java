@@ -63,9 +63,8 @@ public class MemberController {
   }
 
   @PostMapping("/mypage/{memberid}")
-  public ResponseEntity<Void> updateMember(@PathVariable("memberid") Long memberid, HttpServletRequest request) throws ServletException, IOException {
+  public ResponseEntity<Void> updateMember(@PathVariable("memberid") Long memberId, HttpServletRequest request) throws ServletException, IOException {
     // 이미지 처리,
-    Long id = memberid;
     String email = request.getParameter("email");
     String nickname = request.getParameter("nickname");
     String password = request.getParameter("password") == null ? "" : request.getParameter("password");
@@ -73,6 +72,7 @@ public class MemberController {
 
 
     MemberRequestDTO dto = MemberRequestDTO.builder()
+            .id(memberId)
             .email(email)
             .password(password)
             .nickname(nickname)
