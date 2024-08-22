@@ -137,6 +137,11 @@ public class CourseServiceImpl implements CourseService {
 	public long courseLastId() {
 		return courseMapper.courseLastId();
 	}
-	
+
+	@Override
+	public String getSubjectName(long subject_id) {
+		return courseMapper.getSubjectName(subject_id);
+	}
+
 
 }

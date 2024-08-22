@@ -32,44 +32,44 @@ public class CourseController {
   }
 
   @GetMapping("/courseDetail.do")
-  public ModelAndView courseDetail(String courseId) {
+  public ModelAndView courseDetail(String course_id) {
     ModelAndView view = new ModelAndView();
+
     long courseid = 0L;
-    if (courseId != null || courseId != "") {
-      courseid = Long.parseLong(courseId);
+    if (course_id != null || course_id != "") {
+      courseid = Long.parseLong(course_id);
     }
 
     List<Chapter> chapter = chapterService.getChapter2(courseid);
+
     List<String> chapterNames1 = chapterService.getChapterName(courseid);
 
-    System.out.println("sadsadsadsadsa" + chapter.get(0).getChapter_name());
-    System.out.println("sadsadsadsadsa22" + chapter.get(0).getName());
     List<Chapter> getChapter = new ArrayList<Chapter>();
-    List<String> chapterNames2 = new ArrayList<String>();
+   // List<String> chapterNames2 = new ArrayList<String>();
     int chapterSize = chapter.size() / 4;
-    int chapterNamesSize = chapterNames1.size() / 4;
+    //int chapterNamesSize = chapterNames1.size() / 4;
 
     for (int i = 0; i < chapterSize; i++) {
+      chapter.get(i).setChapter_name(chapterNames1.get(i));
       getChapter.add(chapter.get(i));
-      //getChapter.add(chapterService.getChapter(chapter.get(i)));
+    //  getChapter.add(chapterService.getChapter(chapter.get(i)));
       // 추후 예정 chapterName = chapterService.getChapterName(chapter.get(i));
     }
-    for (int i = 0; i < chapterNamesSize; i++) {
-      chapterNames2.add(chapterNames1.get(i));
-      //getChapter.add(chapterService.getChapter(chapter.get(i)));
-      // 추후 예정 chapterName = chapterService.getChapterName(chapter.get(i));
-    }
+    //for (int i = 0; i < chapterNamesSize; i++) {
+     // chapterNames2.add(chapterNames1.get(i));
+     // getChapter.add(chapterService.getChapter(chapter.get(i)));
+   //   // 추후 예정 chapterName = chapterService.getChapterName(chapter.get(i));
+    //}
     //	chapterService.getChapterName(chapter);
     Course course = null;
-    if (courseId != null || courseId != "") {
-      long id = Long.parseLong(courseId);
+    if (course_id != null || course_id != "") {
+      long id = Long.parseLong(course_id);
       course = courseService.courseDetail(id);
     }
     //System.out.println("getChapter: "+ getChapter.get(0).getName());
-    //System.out.println("chapterName: "+ chapterName);
     view.setViewName("course-details");
     view.addObject("course", course);
-    view.addObject("chapterName", chapterNames2);
+   // view.addObject("chapterName", chapterNames2);
     view.addObject("chapter", getChapter);
 
     return view;

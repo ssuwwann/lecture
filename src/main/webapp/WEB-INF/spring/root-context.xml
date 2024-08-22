@@ -61,7 +61,5 @@
     <context:component-scan base-package="org.threefour.homelearn.cart.domain"/>
 
     <mybatis-spring:scan base-package="org.threefour.homelearn.order.mapper"/>
-    <context:component-scan base-package="org.threefour.homelearn.order.mapper"/>
-    <context:component-scan base-package="org.threefour.homelearn.order.service"/>
-    <context:component-scan base-package="org.threefour.homelearn.order.domain"/>
+
 </beans>

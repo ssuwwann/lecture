@@ -60,7 +60,7 @@
                 <strong class="ribbon">$ ${course.price}</strong>
               </figure>
               <div class="course-content">
-                <h3><a href="courseDetail.do?courseId=${course.id}">${course.name }</a></h3>
+                <h3><a href="courseDetail.do?course_id=${course.id}">${course.name }</a></h3>
                 <p>${course.description }</p>
                 <div class="enroll">
                   <div class="ratings">
