@@ -3,12 +3,10 @@ package org.threefour.homelearn.course.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.threefour.homelearn.chapter.domain.Chapter;
@@ -28,13 +26,13 @@ public class CourseController {
 	
 	@GetMapping("/courseForm.do")
 	public String courseForm() {
-		System.out.println("course.Form �α��ﳪȮ��");
-		return "signup";
+		return "courseRegister";
 	}
 	
 	@GetMapping("/courseDetail.do")
 	public ModelAndView courseDetail(String courseId) {
 		ModelAndView view = new ModelAndView();
+
 		long courseid =0L;
 		if(courseId !=null || courseId != "") {
 			courseid = Long.parseLong(courseId);
@@ -43,8 +41,7 @@ public class CourseController {
 		List<Chapter> chapter = chapterService.getChapter2(courseid);
 		List<String> chapterNames1 = chapterService.getChapterName(courseid);
 		
-		System.out.println("sadsadsadsadsa"+ chapter.get(0).getChapter_name());
-		System.out.println("sadsadsadsadsa22"+ chapter.get(0).getName());
+
 		List<Chapter> getChapter = new ArrayList<Chapter>();
 		List<String> chapterNames2 = new ArrayList<String>();
 		int chapterSize = chapter.size()/4;
@@ -57,17 +54,15 @@ public class CourseController {
 		}
 		for(int i=0; i<chapterNamesSize;i++) {
 			chapterNames2.add(chapterNames1.get(i));
-			//getChapter.add(chapterService.getChapter(chapter.get(i)));
-			// 추후 예정 chapterName = chapterService.getChapterName(chapter.get(i));
+
 		}
-	//	chapterService.getChapterName(chapter);
 		Course course = null;
 		if(courseId !=null || courseId != "") {
 			long id = Long.parseLong(courseId);
 			course = courseService.courseDetail(id);
 		}
-		//System.out.println("getChapter: "+ getChapter.get(0).getName());
-		//System.out.println("chapterName: "+ chapterName);
+
+
 		view.setViewName("course-details");
 		view.addObject("course",course);
 		view.addObject("chapterName",chapterNames2);
@@ -103,7 +98,7 @@ public class CourseController {
 				course.setFfname(sub);
 			}
 			pager.setList(list);
-//			Course list = courseService.list(p);
+
 			view.setViewName("courses");
 			view.addObject("pager",pager);
 			return view;
@@ -120,16 +115,17 @@ public class CourseController {
 					System.out.println("sub::  "+ sub );
 					course.setFfname(sub);
 				}
+
 				pager.setList(list);
 				view.setViewName("courses");
 				view.addObject("pager",pager);
+
 				return view;
 		}
 	}
 	
 	@PostMapping("/courseWrite.do")
 	public String courseWrite(CourseVO courseVO, MultipartFile file,String cate) {
-		System.out.println("cate:: " + cate);
 		String ofname =file.getOriginalFilename();
 		long fsize = file.getSize();
 		String fname = courseService.saveAtStore(file);
@@ -142,14 +138,12 @@ public class CourseController {
 		}
 		int of = fname.lastIndexOf("/") +1;
 		String sub = fname.substring(of,fname.length());
-		System.out.println("sub::  "+ sub );
 		courseVO.setFfname(sub);
 		courseVO.setFsize(fsize);
 		courseVO.setFname(fname);
 		courseVO.setOfname(ofname);
 		courseService.courseWrite(courseVO);	
 		long id = courseService.courseLastId();
-		System.out.println("after write iD:: " + id);
 		return "redirect:chapterForm.do?courseId="+id;
 	}
 	
@@ -173,7 +167,7 @@ public class CourseController {
 	@GetMapping("/searchCate.do")
 	public ModelAndView searchCate(String cate) {
 		ModelAndView view = new ModelAndView();
-		System.out.println("searchCate �α��ﳪȮ��  : " + cate);
+
 		int total = courseService.total();
 		int totalPage = courseService.totalPage(3);
 		Pager pager = courseService.startPage(1,3);
@@ -186,9 +180,9 @@ public class CourseController {
 		pager.setTotalPage(totalPage);
 		pager.setPageSize(3);
 		pager.setList(list);
-//		Course list = courseService.list(p);
 		view.setViewName("courses");
 		view.addObject("pager",pager);
+
 		return view;
 	}
 }

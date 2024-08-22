@@ -89,7 +89,7 @@
     <!-- Login / Registration start -->
     <section class="banner login-registration">
       <div class="vector-img">
-      		<img src="resources/images/${course.ffname}" alt="">
+      		<img src="resources/${course.ffname}" alt="">
       </div>
       <div class="container">
         <div class="row">
@@ -211,6 +211,12 @@
 		 for(let i = 0; i<names.length;i++){
 			 if(names.length != chapter_names.length || names.length != urls.length ||names.length != running_times.length ){
 				 alert('모든 항목의 갯수를 같게 해주세요.');
+             //  input.email.value = "";
+             //  input.subject.value = "";
+               //input.content.innerText = "";
+             //  $("#ta").text("");
+
+
 				 return false;
 			 }
 		 }
@@ -218,14 +224,17 @@
 		 
 			if(document.input.name.value == ""){
 			  alert("강의명을 입력해주세요.");
+              input.name.focus();
 			  return false;
 			}
 			if(document.input.chapter_name.value == ""){
 			  alert("챕터명을 입력해주세요.");
+              input.chapter_name.focus();
 			  return false;
 			}
 		    if(document.input.url.value == ""){
 			  alert("URL을 입력해주세요.");
+              input.url.focus();
 			  return false;
 			}
 			if(document.input.running_time.value == ""){
@@ -234,7 +243,9 @@
 			}regExp.test(document.input.running_time.value)
 			if(!regExp.test(document.input.running_time.value)){
 				  alert("영상시간을 숫자만 입력해주세요.");
-				  return false;
+              input.running_time.focus();
+
+              return false;
 				}
 			
 			
