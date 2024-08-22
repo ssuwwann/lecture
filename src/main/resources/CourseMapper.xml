@@ -26,7 +26,10 @@
 	</select> 
 	<select id="courseDetail" parameterType="long" resultType="Course">
          select * from course where id = #{id};
-	</select> 
+	</select>
+	<select id="getSubjectName" parameterType="long" resultType="String">
+		select name from subject where id = #{subject_id};
+	</select>
 	<!-- 
 	<insert id="insert" parameterType="Board">
 		 insert into BOARD(WRITER, EMAIL, SUBJECT,CONTENT,FNAME,OFNAME,FSIZE,RDATE) values(#{writer}, #{email},#{subject},#{content},#{fname},#{ofname}, #{fsize},CURRENT_TIMESTAMP())
