@@ -1,23 +1,8 @@
 package org.threefour.homelearn.home.controller;
 
-import com.nimbusds.jose.shaded.gson.Gson;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.threefour.homelearn.member.dto.CustomUserDetails;
-import org.threefour.homelearn.member.dto.MemberResponseDTO;
-import org.threefour.homelearn.member.dto.Role;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/")

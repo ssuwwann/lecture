@@ -28,7 +28,7 @@
     <div id="preloader">
       <div id="status"></div>
     </div>
-    
+
     <!-- Header strat -->
     <header class="header">
       <div class="container">
@@ -100,13 +100,13 @@
     </section>
     <!-- Page feature end -->
 
-	<% 
+	<%
 	Course course = (Course)request.getAttribute("course");
 	//List<Chapter> chapter = (List<Chapter>)request.getAttribute("chapter");
 	//System.out.println("sadsa+ ${chapter.name}" + chapter.toString());
 	%>
     <!-- Course Details section start -->
-    
+
     <section class="course-details">
       <div class="container">
         <div class="row">
@@ -129,7 +129,7 @@
                   </a><a href="#"><i class="ti-star"></i>
                   </a><a href="#"><i class="ti-star"></i>
                   </a>
-                </div>                
+                </div>
               </div>
             </div>
 
@@ -138,7 +138,7 @@
                 <li><a class="active" data-toggle="tab" href="#overview">설명</a></li>
                 <li><a data-toggle="tab" href="#curriculum">챕터</a></li>
               </ul>
-              
+
               <div class="tab-content">
                 <div id="overview" class="tab-pane fade in show active">
                   <h4 class="tab-title">This course includes</h4>
@@ -152,8 +152,8 @@
                   </ul>
 
                   <h4 class="tab-title">Description</h4>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt esse architecto delectus at facere maxime totam dolorem eum eligendi ullam laudantium officia temporibus repellat nostrum neque, debitis atque sint impedit nemo ipsum! Adipisci dolores ducimus numquam ad cumque possimus? Ex.</p>  
-                  
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt esse architecto delectus at facere maxime totam dolorem eum eligendi ullam laudantium officia temporibus repellat nostrum neque, debitis atque sint impedit nemo ipsum! Adipisci dolores ducimus numquam ad cumque possimus? Ex.</p>
+
                   <h4 class="tab-title">Requirements for this course</h4>
                   <ul>
                     <li><i class="ti-hand-point-right"></i>Phasellus sit amet velit auctor turpis rhoncus.</li>
@@ -161,10 +161,10 @@
                     <li><i class="ti-hand-point-right"></i>Nullam id dolor in ex eleifend tempus.</li>
                     <li><i class="ti-hand-point-right"></i>Etiam id lorem vel neque faucibus fermentum.</li>
                     <li><i class="ti-hand-point-right"></i>Nunc tincidunt augue in enim sollicitudin feugiat.</li>
-                   
+
                   </ul>
                 </div>
-                <% 
+                <%
 					List<Chapter> chapter = (List<Chapter>)request.getAttribute("chapter");
 					//System.out.println("sadsa+ ${chapter.name}" + chapter.toString());
 				%>
@@ -172,7 +172,7 @@
                   <div class="accordion" id="accordion">
                     <div class="accordion-item active">
                         <c:forEach items="${chapter}" var="chapter">
-                    	
+
                       <h5 class="" data-toggle="collapse" data-target="#acpan1" aria-expanded="true">
                        ${chapter.name}
                         <span>08 lectures</span>
@@ -185,18 +185,18 @@
                           </ul>
                         </div>
                       </div>
-                       
-                       
+
+
                       </c:forEach>
-                      
-                      
+
+
                       </c:forEach>
-                      
+
                     </div>
-                    
+
                   </div>
                 </div>
-             
+
               </div>
             </div>
 
@@ -209,10 +209,10 @@
                       <img class="avatar-small circle" src="images/avatar-small.png" alt="">
                     </div>
                     <div class="comments-body">
-                        <h4>Kosmi Kotalia</h4>                  
+                        <h4>Kosmi Kotalia</h4>
                         <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which.</p>
                         <a href="#"><i class="ti-back-right"></i>Reply</a>
-                    </div>                    
+                    </div>
                   </div>
                   <ul class="cmnt-level-2">
                     <li>
@@ -221,7 +221,7 @@
                           <img class="avatar-small circle" src="images/avatar-small.png" alt="">
                         </div>
                         <div class="comments-body">
-                          <h4>Adam wood</h4>                  
+                          <h4>Adam wood</h4>
                           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime ratione libero temporibus quo id iste, esse at accusamus atque qui.</p>
                           <a href="#"><i class="ti-back-right"></i>Reply</a>
                         </div>
@@ -235,7 +235,7 @@
                       <img class="avatar-small circle" src="images/avatar-small.png" alt="">
                     </div>
                     <div class="comments-body">
-                      <h4>Lina handshake</h4>                  
+                      <h4>Lina handshake</h4>
                       <p>Asperiores minus, laborum incidunt explicabo dolore officiis praesentium veniam expedita libero harum pariatur reiciendis porro debitis aliquam quas labore ducimus nisi. Blanditiis?</p>
                       <a href="#"><i class="ti-back-right"></i>Reply</a>
                     </div>
@@ -250,7 +250,7 @@
                 <button class="btn btn-filled btn-round ml-auto"><span class="bh"></span> <span>Submit</span></button>
               </form>
             </div>
-            
+
           </div>
           <div class="col-lg-4">
             <aside class="sidebar">
@@ -272,7 +272,7 @@
                     <a href="#" class="twitter"><i class="ti-twitter-alt"></i></a>
                     <a href="#" class="linkedin"><i class="ti-linkedin"></i></a>
                     <a href="#" class="youtube"><i class="ti-youtube"></i></a>
-                  </div>  
+                  </div>
               </div>
               <div class="widget categories">
                 <h3 class="widget-title">Categories</h3>
@@ -330,7 +330,7 @@
             <div class="col-md-3 col-sm-6">
               <div class="widget widget-navigation">
                 <h4 class="widget-title">Information for</h4>
-                <ul>                  
+                <ul>
                   <li><a href="#">Prospective undergraduates</a></li>
                   <li><a href="#">Prospective graduate students</a></li>
                   <li><a href="#">Businesses/Partnerships</a></li>
@@ -342,7 +342,7 @@
             <div class="col-md-3 col-sm-6">
               <div class="widget widget-navigation">
                 <h4 class="widget-title">Quick Links</h4>
-                <ul>                  
+                <ul>
                   <li><a href="#">Contact Searches</a></li>
                   <li><a href="#">Jobs and Vacancies</a></li>
                   <li><a href="#">University images</a></li>
@@ -378,14 +378,14 @@
           </div>
         </div>
       </div>
-      
+
 
       <div class="foo-btm">
         <div class="container">
           <p class="copyright">Copyright Â© 2019 <a href="#">themeies.com</a>. All rights reserved.</p>
         </div>
       </div>
-      
+
     </footer>
     <!-- Footer end -->
 

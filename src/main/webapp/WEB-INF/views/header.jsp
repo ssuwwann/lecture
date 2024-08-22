@@ -26,7 +26,7 @@
     <div id="preloader">
       <div id="status"></div>
     </div>
-    
+
     <!-- Header strat -->
     <header class="header">
       <div class="container">
