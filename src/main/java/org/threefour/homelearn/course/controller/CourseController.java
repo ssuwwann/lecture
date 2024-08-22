@@ -1,7 +1,9 @@
 package org.threefour.homelearn.course.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.threefour.homelearn.chapter.domain.Chapter;
+import org.threefour.homelearn.chapter.service.ChapterService;
 import org.threefour.homelearn.course.domain.Course;
 import org.threefour.homelearn.course.domain.CourseVO;
 import org.threefour.homelearn.course.domain.Pager;
@@ -19,32 +23,65 @@ public class CourseController {
 
   @Autowired
   private CourseService courseService;
+  @Autowired
+  private ChapterService chapterService;
 
-  @GetMapping("/courseForm")
+  @GetMapping("/courseForm.do")
   public String courseForm() {
     return "signup";
   }
 
-  @GetMapping("/courseDetail")
+  @GetMapping("/courseDetail.do")
   public ModelAndView courseDetail(String courseId) {
     ModelAndView view = new ModelAndView();
-    System.out.println("courseDetail LOG");
-    System.out.println("courseId LOG:  " + courseId);
+    long courseid = 0L;
+    if (courseId != null || courseId != "") {
+      courseid = Long.parseLong(courseId);
+    }
+
+    List<Chapter> chapter = chapterService.getChapter2(courseid);
+    List<String> chapterNames1 = chapterService.getChapterName(courseid);
+
+    System.out.println("sadsadsadsadsa" + chapter.get(0).getChapter_name());
+    System.out.println("sadsadsadsadsa22" + chapter.get(0).getName());
+    List<Chapter> getChapter = new ArrayList<Chapter>();
+    List<String> chapterNames2 = new ArrayList<String>();
+    int chapterSize = chapter.size() / 4;
+    int chapterNamesSize = chapterNames1.size() / 4;
+
+    for (int i = 0; i < chapterSize; i++) {
+      getChapter.add(chapter.get(i));
+      //getChapter.add(chapterService.getChapter(chapter.get(i)));
+      // 추후 예정 chapterName = chapterService.getChapterName(chapter.get(i));
+    }
+    for (int i = 0; i < chapterNamesSize; i++) {
+      chapterNames2.add(chapterNames1.get(i));
+      //getChapter.add(chapterService.getChapter(chapter.get(i)));
+      // 추후 예정 chapterName = chapterService.getChapterName(chapter.get(i));
+    }
+    //	chapterService.getChapterName(chapter);
     Course course = null;
     if (courseId != null || courseId != "") {
       long id = Long.parseLong(courseId);
       course = courseService.courseDetail(id);
     }
+    //System.out.println("getChapter: "+ getChapter.get(0).getName());
+    //System.out.println("chapterName: "+ chapterName);
     view.setViewName("course-details");
     view.addObject("course", course);
+    view.addObject("chapterName", chapterNames2);
+    view.addObject("chapter", getChapter);
+
     return view;
   }
 
-  @GetMapping("/coursesList")
+  @GetMapping("/coursesList.do")
   public ModelAndView coursesList(Pager pager) {
     ModelAndView view = new ModelAndView();
 
     if (pager.getPageNum() == 0) {
+
+
       int total = courseService.total();
       int totalPage = courseService.totalPage(3);
       Pager p = courseService.startPage(1, 3);
@@ -86,11 +123,9 @@ public class CourseController {
       view.addObject("pager", pager);
       return view;
     }
-
-
   }
 
-  @PostMapping("/courseWrite")
+  @PostMapping("/courseWrite.do")
   public String courseWrite(CourseVO courseVO, MultipartFile file, String cate) {
     System.out.println("cate:: " + cate);
     String ofname = file.getOriginalFilename();
@@ -113,10 +148,10 @@ public class CourseController {
     courseService.courseWrite(courseVO);
     long id = courseService.courseLastId();
     System.out.println("after write iD:: " + id);
-    return "redirect:chapterForm?courseId=" + id;
+    return "redirect:chapterForm.do?courseId=" + id;
   }
 
-  @PostMapping("/courseSearch")
+  @PostMapping("/courseSearch.do")
   public ModelAndView courseSearch(String name, String pageNum, String pageSize) {
 
     ModelAndView view = new ModelAndView();
@@ -131,13 +166,11 @@ public class CourseController {
     pager.setList(list);
     view.addObject("pager", pager);
     return view;
-
   }
 
-  @GetMapping("/searchCate")
+  @GetMapping("/searchCate.do")
   public ModelAndView searchCate(String cate) {
     ModelAndView view = new ModelAndView();
-    System.out.println("searchCate �α��ﳪȮ��  : " + cate);
     int total = courseService.total();
     int totalPage = courseService.totalPage(3);
     Pager pager = courseService.startPage(1, 3);

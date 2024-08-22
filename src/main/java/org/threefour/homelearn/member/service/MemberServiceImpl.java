@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.threefour.homelearn.file.FileUtil;
@@ -20,8 +22,7 @@ import org.threefour.homelearn.member.mapper.RoleMapper;
 
 import javax.servlet.http.Part;
 import java.io.File;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -49,7 +50,7 @@ public class MemberServiceImpl implements MemberService {
 
     // Role 추가
     Role role = new Role();
-    if (dto.getRole() == null && dto.getRole().startsWith("TEACHER")) {
+    if (dto.getRole().startsWith("TEACHER")) {
       role = new Role();
       role.setRole("ROLE_TEACHER");
       roleMapper.insertRole(role);
@@ -106,7 +107,19 @@ public class MemberServiceImpl implements MemberService {
         }
       }
     }
-
   }
+
+  @Override
+  public Map<String, String> validateHandling(Errors errors) {
+    Map<String, String> validatorResult = new HashMap<>();
+
+    for (FieldError error : errors.getFieldErrors()) {
+      String validKeyName = String.format("valid_%s", error.getField());
+      validatorResult.put(validKeyName, error.getDefaultMessage());
+    }
+
+    return validatorResult;
+  }
+
 
 }

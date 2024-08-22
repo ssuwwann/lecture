@@ -23,7 +23,7 @@
 
     <security:http auto-config="true" use-expressions="true">
         <security:csrf disabled="true"/>
-        <security:intercept-url pattern="/courseForm" access="hasRole('TEACHER')"/>
+        <security:intercept-url pattern="/courseForm.do" access="hasRole('TEACHER')"/>
         <security:intercept-url pattern="/members/mypage" access="hasRole('MEMBER')"/>
         <security:intercept-url pattern="/files/**" access="hasRole('MEMBER')"/>
         <security:intercept-url pattern="/get-info" access="hasRole('MEMBER')"/>

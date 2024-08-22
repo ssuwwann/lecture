@@ -34,6 +34,10 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:application.properties"/>
+    </bean>
+
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <mybatis-spring:scan base-package="org.threefour.homelearn.course.mapper"/>
@@ -53,4 +57,7 @@
     <context:component-scan base-package="org.threefour.homelearn.file.service"/>
     <mybatis-spring:scan base-package="org.threefour.homelearn.file.mapper"/>
 
+    <mybatis-spring:scan base-package="org.threefour.homelearn.chapter.mapper"/>
+    <context:component-scan base-package="org.threefour.homelearn.chapter.service"/>
+    <context:component-scan base-package="org.threefour.homelearn.chapter.domain"/>
 </beans>

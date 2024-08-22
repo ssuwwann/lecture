@@ -11,16 +11,11 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Chapter {
-
-	private long id;
-	private long course_id;
+public class ChapterVO {
+	private long courseId;
 	private String url;
 	private String name;
-	private String chapter_name;
-	private String running_time;
+	private String chapterName;
+	private String runningTime;
 	private int length;
-	private LocalDateTime created_at;
-	private LocalDateTime Modified_at;
-
 }

@@ -80,13 +80,19 @@
               <input type="password" name="password" class="form-control" id="password">
             </div>
           </div>
-          <div class="form-group">
-            <label for="message">Your Message</label>
-            <textarea name="message" class="form-control" id="message" placeholder="Your Message"
-                      required=""></textarea>
-          </div>
           <button type="submit" class="btn btn-default">정보 수정</button>
         </form>
+        <div class="container">
+          <h3>수강 목록</h3>
+          <div class="row">
+            <div style="border: 1px solid saddlebrown" class="col-lg-4 col-md-6 col-sm-12">여기 수강 목록들</div>
+            <div style="border: 1px solid saddlebrown" class="col-lg-4 col-md-6 col-sm-12">여기 수강 목록들</div>
+            <div style="border: 1px solid saddlebrown" class="col-lg-4 col-md-6 col-sm-12">여기 수강 목록들</div>
+            <div style="border: 1px solid saddlebrown" class="col-lg-4 col-md-6 col-sm-12">여기 수강 목록들</div>
+            <div style="border: 1px solid saddlebrown" class="col-lg-4 col-md-6 col-sm-12">여기 수강 목록들</div>
+            <div style="border: 1px solid saddlebrown" class="col-lg-4 col-md-6 col-sm-12">여기 수강 목록들</div>
+          </div>
+        </div>
       </div>
       <div class="col-md-4">
         <aside class="sidebar">

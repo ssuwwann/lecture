@@ -25,7 +25,6 @@
         <beans:property name="suffix" value=".jsp"/>
     </beans:bean>
 
-    <context:component-scan base-package="org.threefour.homelearn.course.etc"/>
     <context:component-scan base-package="org.threefour.homelearn.course.controller"/>
     <context:component-scan base-package="org.threefour.homelearn.chapter.controller"/>
 
@@ -36,6 +35,15 @@
 
     <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <beans:property name="maxUploadSizePerFile" value="3145728"></beans:property>
+    </beans:bean>
+
+    <beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <beans:property name="basenames">
+            <beans:list>
+                <beans:value>message.error</beans:value>
+            </beans:list>
+        </beans:property>
+        <beans:property name="defaultEncoding" value="UTF-8"/>
     </beans:bean>
 
 </beans:beans>

@@ -2,24 +2,24 @@ package org.threefour.homelearn.member.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.threefour.homelearn.member.dto.MemberRequestDTO;
 import org.threefour.homelearn.member.service.MemberService;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.Collection;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/members")
@@ -35,16 +35,16 @@ public class MemberController {
   }
 
   @PostMapping("/signup")
-  public String signup(@Valid MemberRequestDTO dto, @RequestPart("profileImage") MultipartFile multipartFile, BindingResult result) throws ServletException, IOException {
-    System.out.println("나 뭐한거지" + dto);
-    System.out.println("?? " + multipartFile.getName());
-
+  public String signup(@Validated @ModelAttribute("memberRequestDTO") MemberRequestDTO dto, BindingResult result, @RequestPart("profileImage") MultipartFile multipartFile) throws ServletException, IOException {
     if (result.hasErrors()) {
-      return "redirect:/members/signup";
+      result.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
+      return "jsp/signup"; // redirect 대신 뷰 이름을 반환
     }
+
+    if (dto.getRole() == null) dto.setRole("ROLE_MEMBER");
     memberService.addMember(dto, multipartFile);
 
-    return "redirect:/members/login";
+    return "redirect:/members/jsp/login";
   }
 
   @GetMapping("/login")

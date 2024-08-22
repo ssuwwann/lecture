@@ -1,4 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page session="false" pageEncoding="UTF-8" %>
 <!doctype html>
 <html lang="en">
@@ -104,7 +108,7 @@
           <h2>Create Account</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sedo<br> eiusmod tempor incididunt dolore.</p>
         </div>
-        <form class="sl-form" method="post" enctype="multipart/form-data">
+        <form:form class="sl-form" method="post" enctype="multipart/form-data" modelAttribute="memberRequestDTO">
           <input type="file" name="profileImage" id="profileImageInput" style="display: none">
           <div class="form-group">
             <label for="email">이메일</label>
@@ -115,28 +119,37 @@
           <div class="form-group">
             <label for="nickname">닉네임</label>
             <input type="text" name="nickname" placeholder="Jhone Doe" id="nickname" required>
+            <spring:hasBindErrors name="memberRequestDTO">
+              <c:if test="${errors.hasFieldErrors('nickname')}">
+                <strong>${errors.getFieldError('nickname').defaultMessage}</strong>
+              </c:if>
+            </spring:hasBindErrors>
           </div>
           <div class="form-group">
             <label for="password">비밀번호</label>
             <input type="password" name="password" placeholder="Password" id="password" required>
             <div class="password-failure-message hide">8글자 이상, 영문, 숫자, 특수문자(@$!%*#?&)를 입력해주세요.</div>
+              ${valid_password}
+            <spring:hasBindErrors name="memberRequestDTO">
+              <c:if test="${errors.hasFieldErrors('password')}">
+                <strong>${errors.getFieldError('password').defaultMessage}</strong>
+              </c:if>
+            </spring:hasBindErrors>
           </div>
           <div class="form-group">
             <label for="password2">비밀번호 확인</label>
-            <input type="password" name="password2" placeholder="Password" id="password2" required>
+            <input type="password" placeholder="Password" id="password2" required>
             <div class="password-mismatch-message hide">비밀번호가 일치하지 않습니다.</div>
           </div>
-          <%--일반인 인지 글쓴이 인지--%>
           <div>
             <label>강의를 올리고 싶으시면 선택하세요</label>
             <div>
               <input type="radio" name="role" value="TEACHER"> Teacher
             </div>
           </div>
-
           <button class="btn btn-filled btn-round">Signup</button>
           <p class="notice">Already have an account? <a href='/members/login'>Login Account</a></p>
-        </form>
+        </form:form>
       </div>
     </div>
   </div>

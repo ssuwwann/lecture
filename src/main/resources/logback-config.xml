@@ -9,7 +9,6 @@
             <pattern>%d{HH:mm} %-5level %logger{36} - %msg%n</pattern>
         </layout>
     </appender>
-
     <!--file appender-->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOGS_PATH}/log_file.log</file>
