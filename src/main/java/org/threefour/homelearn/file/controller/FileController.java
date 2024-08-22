@@ -37,8 +37,8 @@ public class FileController {
   private final FileService fileService;
 
   @PostMapping(value = "/{id}")
-  public ResponseEntity<byte[]> getFile(@PathVariable Long id) {
-    List<AttachFile> fileByMemberId = fileService.getFileByMemberId(id);
+  public ResponseEntity<byte[]> getProfileImage(@PathVariable Long id) {
+    List<AttachFile> fileByMemberId = fileService.getProfileImageByMemberId(id);
     ResponseEntity<byte[]> result = null;
     for (AttachFile file : fileByMemberId) {
       try {

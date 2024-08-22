@@ -7,7 +7,6 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <annotation-driven/>
 
     <resources mapping="/resources/**" location="/resources/"/>
     <resources mapping="/resources/js/**" location="/resources/js/"/>
@@ -15,6 +14,11 @@
     <resources mapping="/resources/scss/**" location="/resources/scss/"/>
     <resources mapping="/resources/webfonts/**" location="/resources/webfonts/"/>
     <resources mapping="/resources/images/**" location="/resources/images/"/>
+
+    <annotation-driven validator="myBeansValidator"/>
+
+    <!--    <beans:bean id="myBeansValidator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>-->
+    <beans:bean id="myBeansValidator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
 
     <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="prefix" value="/WEB-INF/views/"/>
@@ -30,10 +34,8 @@
     <context:component-scan base-package="org.threefour.homelearn.file"/>
     <!--    <context:component-scan base-package="org.threefour.homelearn.file.controller"/>-->
 
-    <!--
-    멀티파트 리졸버 사용
     <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <beans:property name="maxUploadSizePerFile" value="3145728"></beans:property>
     </beans:bean>
-    -->
+
 </beans:beans>

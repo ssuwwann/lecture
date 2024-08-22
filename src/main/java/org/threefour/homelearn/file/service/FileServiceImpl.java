@@ -17,8 +17,8 @@ public class FileServiceImpl implements FileService {
 
 
   @Override
-  public List<AttachFile> getFileByMemberId(Long memberId) {
-    return fileMapper.selectFileByMemberId(memberId);
+  public List<AttachFile> getProfileImageByMemberId(Long memberId) {
+    return fileMapper.getProfileImageByMemberId(memberId);
   }
 
   @Override

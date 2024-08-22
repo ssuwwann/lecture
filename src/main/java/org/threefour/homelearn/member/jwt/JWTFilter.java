@@ -43,7 +43,7 @@ public class JWTFilter extends OncePerRequestFilter {
     }
 
     // 토큰 없을 때 => 로그인 x
-    if (accessToken.length() == 0) {
+    if (accessToken.length() == 0 || accessToken == null) {
       filterChain.doFilter(request, response);
       return;
     }

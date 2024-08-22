@@ -6,6 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.threefour.homelearn.file.FileUtil;
 import org.threefour.homelearn.file.dto.AttachFile;
 import org.threefour.homelearn.file.mapper.FileMapper;
@@ -37,7 +38,7 @@ public class MemberServiceImpl implements MemberService {
 
 
   @Override
-  public int addMember(MemberRequestDTO dto, @RequestParam("profileImage") Collection<Part> parts) {
+  public int addMember(MemberRequestDTO dto, MultipartFile multipartFile) {
 
     // Member 추가
     dto.setPassword(passwordEncoder.encode(dto.getPassword()));
@@ -48,7 +49,7 @@ public class MemberServiceImpl implements MemberService {
 
     // Role 추가
     Role role = new Role();
-    if (dto.getRole() == null || dto.getRole().startsWith("TEACHER")) {
+    if (dto.getRole() == null && dto.getRole().startsWith("TEACHER")) {
       role = new Role();
       role.setRole("ROLE_TEACHER");
       roleMapper.insertRole(role);
@@ -66,7 +67,7 @@ public class MemberServiceImpl implements MemberService {
     int result = memberRoleMapper.insertMemberRole(memberRole);
 
     if (result > 0) {
-      List<AttachFile> attachFiles = fileUtil.fileSave(parts, dto.getId());
+      List<AttachFile> attachFiles = fileUtil.fileSave(multipartFile, dto.getId());
       if (attachFiles != null)
         fileMapper.insertFile(attachFiles);
     }
@@ -75,7 +76,7 @@ public class MemberServiceImpl implements MemberService {
   }
 
   @Override
-  public void updateMemberByMemberid(MemberRequestDTO dto, Collection<Part> parts) {
+  public void updateMemberByMemberid(MemberRequestDTO dto, MultipartFile multipartFile) {
 
     String password = dto.getPassword();
     if (password != null)
@@ -83,11 +84,11 @@ public class MemberServiceImpl implements MemberService {
 
     memberMapper.updateMemberByMemberid(dto);
 
-    List<AttachFile> attachFiles = fileMapper.selectFileByMemberId(dto.getId());
+    List<AttachFile> attachFiles = fileMapper.getProfileImageByMemberId(dto.getId());
 
     // 업데이트시 기본 -> 이미지변경
     if (attachFiles.isEmpty()) {
-      List<AttachFile> updateAttachFile = fileUtil.fileSave(parts, dto.getId());
+      List<AttachFile> updateAttachFile = fileUtil.fileSave(multipartFile, dto.getId());
       if (updateAttachFile != null)
         fileMapper.insertFile(updateAttachFile);
       return;
@@ -97,7 +98,7 @@ public class MemberServiceImpl implements MemberService {
     for (AttachFile attachFile : attachFiles) {
       File f = new File(attachFile.getFilePath() + File.separator + attachFile.getSaveName());
       if (f.exists()) {
-        List<AttachFile> updateAttachFile = fileUtil.fileSave(parts, dto.getId());
+        List<AttachFile> updateAttachFile = fileUtil.fileSave(multipartFile, dto.getId());
         if (updateAttachFile != null) {
           fileMapper.insertFile(updateAttachFile);
           fileMapper.deleteFile(attachFile.getSaveName());

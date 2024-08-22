@@ -54,8 +54,8 @@ public class HomeApiController {
             .roles(list)
             .build();
 
-    List<AttachFile> fileByMemberId = fileService.getFileByMemberId(dto.getId());
-    for (AttachFile file : fileByMemberId) dto.setAttachFile(file);
+    List<AttachFile> profileImage = fileService.getProfileImageByMemberId(dto.getId());
+    for (AttachFile file : profileImage) dto.setAttachFile(file);
 
     System.out.println("dto: " + gson.toJson(dto));
     return ResponseEntity.ok(gson.toJson(dto));

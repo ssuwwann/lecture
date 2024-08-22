@@ -5,10 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.threefour.homelearn.member.dto.MemberRequestDTO;
 import org.threefour.homelearn.member.service.MemberService;
 
@@ -18,6 +17,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Collection;
 
@@ -25,9 +25,6 @@ import java.util.Collection;
 @RequestMapping("/members")
 @RequiredArgsConstructor
 @Slf4j
-@MultipartConfig(
-        maxFileSize = 1024 * 1024 * 5
-)
 public class MemberController {
 
   private final MemberService memberService;
@@ -38,16 +35,14 @@ public class MemberController {
   }
 
   @PostMapping("/signup")
-  public String signup(HttpServletRequest request) throws ServletException, IOException {
-    MemberRequestDTO dto = MemberRequestDTO.builder()
-            .email(request.getParameter("email"))
-            .password(request.getParameter("password"))
-            .nickname(request.getParameter("nickname"))
-            .role(request.getParameter("role"))
-            .build();
+  public String signup(@Valid MemberRequestDTO dto, @RequestPart("profileImage") MultipartFile multipartFile, BindingResult result) throws ServletException, IOException {
+    System.out.println("나 뭐한거지" + dto);
+    System.out.println("?? " + multipartFile.getName());
 
-    Collection<Part> parts = request.getParts();
-    memberService.addMember(dto, parts);
+    if (result.hasErrors()) {
+      return "redirect:/members/signup";
+    }
+    memberService.addMember(dto, multipartFile);
 
     return "redirect:/members/login";
   }
@@ -63,21 +58,12 @@ public class MemberController {
   }
 
   @PostMapping("/mypage/{memberid}")
-  public String updateMember(@PathVariable("memberid") Long memberId, HttpServletRequest request) throws ServletException, IOException {
-    // 이미지 처리,
-    String email = request.getParameter("email");
-    String nickname = request.getParameter("nickname");
-    String password = request.getParameter("password") == null ? "" : request.getParameter("password");
-    Collection<Part> parts = request.getParts();
+  public String updateMember(@PathVariable("memberid") Long memberId, MemberRequestDTO dto, @RequestPart("profileImage") MultipartFile multipartFile) throws ServletException, IOException {
+    String password = dto.getPassword() == null ? "" : dto.getPassword();
+    dto.setId(memberId);
+    dto.setPassword(password);
 
-    MemberRequestDTO dto = MemberRequestDTO.builder()
-            .id(memberId)
-            .email(email)
-            .password(password)
-            .nickname(nickname)
-            .build();
-
-    memberService.updateMemberByMemberid(dto, parts);
+    memberService.updateMemberByMemberid(dto, multipartFile);
     return "redirect:/members/mypage/" + memberId;
   }
 

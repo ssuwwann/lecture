@@ -68,10 +68,6 @@ public class AjaxLoginFilter extends AbstractAuthenticationProcessingFilter {
     String accessToken = jwtUtil.createToken(accessTokenMap, username, 1000 * 60 * 10L);
     String refreshToken = jwtUtil.createToken(refreshTokenMap, username, 1000 * 60 * 60 * 24L);
 
-    System.out.println("Accestoken life: " + new Date(System.currentTimeMillis() + 1000 * 3 * 10L));
-    System.out.println("Refreshtoken life: " + new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24L));
-
-
     addRefreshEntity(username, refreshToken, 1000 * 60 * 60 * 24L);
     response.addCookie(createCookie("accessToken", accessToken));
     response.addCookie(createCookie("refreshToken", refreshToken));

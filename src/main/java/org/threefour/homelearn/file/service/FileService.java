@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface FileService {
 
-  List<AttachFile> getFileByMemberId(Long memberId);
+  List<AttachFile> getProfileImageByMemberId(Long memberId);
 
   int addFile(List<AttachFile> files);
 

@@ -75,6 +75,14 @@
             <version>0.9.1</version>
         </dependency>
 
+        <!--유효성 체크-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+            <version>2.6.7</version>
+        </dependency>
+
+
         <!-- AspectJ -->
         <dependency>
             <groupId>org.aspectj</groupId>
