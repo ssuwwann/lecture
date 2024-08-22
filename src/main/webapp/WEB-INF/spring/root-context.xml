@@ -10,7 +10,6 @@
   		http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd
 		">
-
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
         <property name="jdbcUrl"
@@ -47,11 +46,6 @@
     <context:component-scan base-package="org.threefour.homelearn.course.fileset"/>
     <context:component-scan base-package="org.threefour.homelearn.chapter.controller"/>
 
-    <mybatis-spring:scan base-package="org.threefour.homelearn.chapter.mapper"/>
-
-    <context:component-scan base-package="org.threefour.homelearn.chapter.service"/>
-    <context:component-scan base-package="org.threefour.homelearn.chapter.domain"/>
-
     <context:component-scan base-package="org.threefour.homelearn.member.service"/>
     <mybatis-spring:scan base-package="org.threefour.homelearn.member.mapper"/>
     <context:component-scan base-package="org.threefour.homelearn.file.service"/>
@@ -60,4 +54,14 @@
     <mybatis-spring:scan base-package="org.threefour.homelearn.chapter.mapper"/>
     <context:component-scan base-package="org.threefour.homelearn.chapter.service"/>
     <context:component-scan base-package="org.threefour.homelearn.chapter.domain"/>
+
+    <mybatis-spring:scan base-package="org.threefour.homelearn.cart.mapper"/>
+    <context:component-scan base-package="org.threefour.homelearn.cart.mapper"/>
+    <context:component-scan base-package="org.threefour.homelearn.cart.service"/>
+    <context:component-scan base-package="org.threefour.homelearn.cart.domain"/>
+
+    <mybatis-spring:scan base-package="org.threefour.homelearn.order.mapper"/>
+    <context:component-scan base-package="org.threefour.homelearn.order.mapper"/>
+    <context:component-scan base-package="org.threefour.homelearn.order.service"/>
+    <context:component-scan base-package="org.threefour.homelearn.order.domain"/>
 </beans>
