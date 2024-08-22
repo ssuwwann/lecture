@@ -1,0 +1,27 @@
+.sec-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profileImageWrapper {
+    width: 250px;
+    height: 300px;
+}
+
+#profileImage {
+    border-radius: 25px;
+    height: 100%;
+}
+
+label[for='profileImageInput'] {
+    max-width: 50px;
+}
+
+label[for='profileImageInput'] > div {
+
+}
+
+label[for='profileImageInput'] > img {
+    width: 100%;
+}

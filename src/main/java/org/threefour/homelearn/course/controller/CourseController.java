@@ -28,7 +28,7 @@ public class CourseController {
 	public String courseForm() {
 		return "courseRegister";
 	}
-	
+
 	@GetMapping("/courseDetail.do")
 	public ModelAndView courseDetail(String courseId) {
 		ModelAndView view = new ModelAndView();
@@ -37,16 +37,16 @@ public class CourseController {
 		if(courseId !=null || courseId != "") {
 			courseid = Long.parseLong(courseId);
 		}
-		
+
 		List<Chapter> chapter = chapterService.getChapter2(courseid);
 		List<String> chapterNames1 = chapterService.getChapterName(courseid);
-		
+
 
 		List<Chapter> getChapter = new ArrayList<Chapter>();
 		List<String> chapterNames2 = new ArrayList<String>();
 		int chapterSize = chapter.size()/4;
 		int chapterNamesSize = chapterNames1.size()/4;
-		
+
 		for(int i=0; i<chapterSize;i++) {
 			getChapter.add(chapter.get(i));
 			//getChapter.add(chapterService.getChapter(chapter.get(i)));
@@ -123,7 +123,7 @@ public class CourseController {
 				return view;
 		}
 	}
-	
+
 	@PostMapping("/courseWrite.do")
 	public String courseWrite(CourseVO courseVO, MultipartFile file,String cate) {
 		String ofname =file.getOriginalFilename();
@@ -142,16 +142,16 @@ public class CourseController {
 		courseVO.setFsize(fsize);
 		courseVO.setFname(fname);
 		courseVO.setOfname(ofname);
-		courseService.courseWrite(courseVO);	
+		courseService.courseWrite(courseVO);
 		long id = courseService.courseLastId();
 		return "redirect:chapterForm.do?courseId="+id;
 	}
-	
+
 	@PostMapping("/courseSearch.do")
 	public ModelAndView courseSearch(String name ,String pageNum,String pageSize ) {
-		
+
 		ModelAndView view = new ModelAndView();
-	
+
 		List<Course> list = courseService.searchList(name);
 		view.setViewName("courses");
 		Pager pager  = new Pager();
@@ -163,7 +163,7 @@ public class CourseController {
 		view.addObject("pager",pager);
 		return view;
 	}
-	
+
 	@GetMapping("/searchCate.do")
 	public ModelAndView searchCate(String cate) {
 		ModelAndView view = new ModelAndView();

@@ -22,5 +22,5 @@ public class Chapter {
 	private int length;
 	private LocalDateTime created_at;
 	private LocalDateTime Modified_at;
-	
+
 }
