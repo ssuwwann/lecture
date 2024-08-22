@@ -56,7 +56,7 @@
     <div class="col-lg-4 col-md-6"  style="display:inline-block; width: 33%;">
             <div class="single-course">
               <figure class="course-thumb">
-                <img src="resources/${course.ffname}" alt="">
+                <img src="resources/images/${course.ffname}" alt="">
                 <strong class="ribbon">$ ${course.price}</strong>
               </figure>
               <div class="course-content">

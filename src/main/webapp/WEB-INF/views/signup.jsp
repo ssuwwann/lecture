@@ -89,35 +89,39 @@
     <!-- Login / Registration start -->
     <section class="banner login-registration">
       <div class="vector-img">
-      		<img src="resources/images/${course.ffname}" alt="">
       </div>
       <div class="container">
         <div class="row">
           <div class="col-md-6">
             <div class="content-box">
-              <h2>강의 등록</h2>
-              <h4 style="color:orange">${course.name }</h4>
+              <h2>강좌개설</h2>
             </div>
-            <form class="sl-form" name="input" method="post" action="chapterWrite.do" >
-            	<input type="hidden" name="course_id" value="${course.id }">
+            <form class="sl-form" name="input" method="post" action="courseWrite.do" enctype="multipart/form-data">
+            <input type='radio' name='cate' value='korean' checked/>국어&nbsp;&nbsp;&nbsp;&nbsp;
+  			<input type='radio' name='cate' value='english' />영어&nbsp;&nbsp;&nbsp;&nbsp;
+  			<input type='radio' name='cate' value='math' />수학</br>&nbsp;&nbsp;&nbsp;&nbsp;
+  			</br>
               <div class="form-group">
-                <label>강의명</label>
-                <input type="text" id="name" name="name"placeholder=",를 구분자로 입력해주세요." >
+                <label>강좌명</label>
+                <input type="text" id="name" name="name"placeholder="강좌명을 입력해주세요." >
               </div>
               <div class="form-group">
-                <label>챕터명</label>
-                <input type="text" id="chapter" name="chapter_name"placeholder=",를 구분자로 입력해주세요." >
+                <label>설명</label>
+                <input type="text" id="description" name="description" placeholder="강좌 설명을 입력해주세요." >
               </div>
               <div class="form-group">
-                <label>URL</label>
-                <input type="text" id="url" name="url" placeholder=",를 구분자로 사용해주세요." >
+                <label>수강기간  &nbsp;&nbsp;<span style="color:orange; font-weight: bold;">(단위: "일")</span></label>
+                <input type="text" id="period"name="period"placeholder="수강기간을 숫자로 입력해주세요." >
               </div>
-              <div class="form-group">
-                <label>영상시간 &nbsp;&nbsp;<span style="color:red; font-weight: bold;">(단위: "분")</span></label>
-                <input type="text" id="runningTime"name="running_time"placeholder=" ,를 구분자로  입력해주세요." >
+             <div class="form-group">
+                <label>가격 &nbsp;&nbsp;<span style="color:orange; font-weight: bold;">(단위: "$")<span></span></label>
+                <input type="text" id="price"name="price"placeholder="가격을  숫자로 입력해주세요." >
               </div>
-
-              <button type="button" class="btn btn-filled btn-round" onclick="check()">등록하기</button>
+            	<div class="form-group">
+                <label>대표 이미지 &nbsp;&nbsp;<span style="color:orange; font-weight: bold;">"이미지만  가능"</span></label>
+                <input type="file" name="file" >
+              </div>
+              <button type="button" class="btn btn-filled btn-round" onclick="check()">개설하기</button>
               <p class="notice">이미 로그인한 아이디가 있습니까? <a href="login.html">로그인 하러가기</a></p>
             </form>
           </div>
@@ -193,50 +197,41 @@
     </footer>
     <!-- Footer end -->
 	<script>
-	 function check() {
-		 let name = document.input.name.value;
-		 let chapter_name = document.input.chapter_name.value;
-		 let url = document.input.url.value;
-		 let running_time =document.input.running_time.value;
-
-		 let names = name.split(',');
-		 let chapter_names = chapter_name.split(',');
-		 let urls = url.split(',');
-		 let running_times = running_time.split(',');
-
-		 console.log(names.length+','+chapter_names.length+','+urls.length+','+running_times.length);
-
-		 var regExp = /[0-9]/;
-
-		 for(let i = 0; i<names.length;i++){
-			 if(names.length != chapter_names.length || names.length != urls.length ||names.length != running_times.length ){
-				 alert('모든 항목의 갯수를 같게 해주세요.');
-				 return false;
-			 }
-		 }
-
-
-			if(document.input.name.value == ""){
-			  alert("강의명을 입력해주세요.");
+	 function check()
+	 {
+		    if(document.input.name.value == "")
+			{
+			  alert("강좌명을 입력해주세요");
 			  return false;
 			}
-			if(document.input.chapter_name.value == ""){
-			  alert("챕터명을 입력해주세요.");
+			if(document.input.description.value == "")
+			{
+			  alert("강좌 설명을 입력해주세요");
 			  return false;
 			}
-		    if(document.input.url.value == ""){
-			  alert("URL을 입력해주세요.");
+			if(document.input.period.value == "")
+			{
+			  alert("수강가능 기간을 입력해주세요");
 			  return false;
 			}
-			if(document.input.running_time.value == ""){
-			  alert("수강가능 기간을 입력해주세요.");
+			if(document.input.price.value == "")
+			{
+			  alert("가격을 숫자로 입력해 주세요");
 			  return false;
-			}regExp.test(document.input.running_time.value)
-			if(!regExp.test(document.input.running_time.value)){
-				  alert("영상시간을 숫자만 입력해주세요.");
+			}
+			if(document.input.file.value == "")
+			{
+			  alert("대표이미지를 입력해주세요");
+			  return false;
+			}
+			if(isNaN(document.input.period.value)){
+				  alert("수강기간을 숫자만 입력해주세요.");
 				  return false;
 				}
-
+			if(isNaN(document.input.price.value)){
+				  alert("가격을 숫자만 입력해주세요.");
+				  return false;
+				}
 
 			document.input.submit();
 		  }

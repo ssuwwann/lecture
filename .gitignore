@@ -3,13 +3,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-
-views/jsp/
-webapp/resources/css/
-webapp/resources/js/
-webapp/resources/scss/
-webapp/resources/images/
-webapp/resources/webfonts/
+*.properties
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
