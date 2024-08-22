@@ -25,4 +25,17 @@
 				<property name="configLocation"
 					 value="classpath:/mybatis-config.xml"/>
 			</bean>
+	
+		
+		<mybatis-spring:scan base-package="org.threefour.homelearn.course.mapper"/>
+		<context:component-scan base-package="org.threefour.homelearn.course.mapper"/>
+		<context:component-scan base-package="org.threefour.homelearn.course.service"/>
+		<context:component-scan base-package="org.threefour.homelearn.course.domain"/>
+		<context:component-scan base-package="org.threefour.homelearn.course.fileset"/>
+			<context:component-scan base-package="org.threefour.homelearn.chapter.controller" />
+			
+			<mybatis-spring:scan base-package="org.threefour.homelearn.chapter.mapper"/>	
+		
+		<context:component-scan base-package="org.threefour.homelearn.chapter.service"/>
+		<context:component-scan base-package="org.threefour.homelearn.chapter.domain"/>
 </beans>
