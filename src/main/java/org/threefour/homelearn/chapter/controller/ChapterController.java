@@ -24,10 +24,12 @@ public class ChapterController {
 	@GetMapping("/chapterForm.do")
 	public ModelAndView courseForm(String courseId) {
 		ModelAndView view = new ModelAndView();
+
 		long id =0L;
 		if(courseId != null || courseId != "") {
 			id = Long.parseLong(courseId);
 		}
+
 		Course course = courseService.courseDetail(id);
 		view.addObject("course", course);
 		view.setViewName("chapter");
@@ -42,8 +44,7 @@ public class ChapterController {
 		if(course_id !=null || course_id != "") {
 			courseid = Long.parseLong(course_id);
 		}
-		System.out.println("asdsadsadad챕터네임 "+ chapter.getChapter_name());
-		
+
 		
 		
 		
@@ -81,6 +82,7 @@ public class ChapterController {
 			chapter.setRunning_time(runningTimes[i]);
 			chapterService.insert(chapter);
 		}
+
 		int length = names.length;
 		chapter.setLength(length);
 		

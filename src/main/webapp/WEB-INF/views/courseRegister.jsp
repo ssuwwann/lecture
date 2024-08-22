@@ -196,47 +196,64 @@
       
     </footer>
     <!-- Footer end -->
-	<script>
-	 function check()
-	 {
-		    if(document.input.name.value == "")
-			{
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <script>
+      $( document ).ready(function() {
+        input.name.focus();
+      });
+	 function check() {
+		    if(document.input.name.value == ""){
 			  alert("강좌명을 입력해주세요");
-			  return false;
+              input.name.focus();
+
+              return false;
 			}
-			if(document.input.description.value == "")
-			{
+			if(document.input.description.value == ""){
 			  alert("강좌 설명을 입력해주세요");
-			  return false;
+              input.description.focus();
+
+              return false;
 			}
-			if(document.input.period.value == "")
-			{
+			if(document.input.period.value == ""){
 			  alert("수강가능 기간을 입력해주세요");
-			  return false;
+              input.period.focus();
+
+              return false;
 			}
-			if(document.input.price.value == "")
-			{
+			if(document.input.price.value == ""){
 			  alert("가격을 숫자로 입력해 주세요");
-			  return false;
+              input.price.focus();
+
+              return false;
 			}
-			if(document.input.file.value == "")
-			{
+			if(document.input.file.value == ""){
 			  alert("대표이미지를 입력해주세요");
+              input.file.focus();
+
 			  return false;
 			}
 			if(isNaN(document.input.period.value)){
 				  alert("수강기간을 숫자만 입력해주세요.");
-				  return false;
+                  input.period.focus();
+
+              return false;
 				}
 			if(isNaN(document.input.price.value)){
 				  alert("가격을 숫자만 입력해주세요.");
-				  return false;
+                  input.price.focus();
+
+              return false;
 				}
 			
 			document.input.submit();
 		  }
 	</script>
     <!-- JS -->
+    <script
+            src="https://code.jquery.com/jquery-3.7.1.js"
+            integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+            crossorigin="anonymous"></script>
     <script src="resources/js/jquery-3.3.1.min.js"></script>
     <script src="resources/js/jquery-ui.min.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
