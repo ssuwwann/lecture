@@ -18,5 +18,5 @@ public interface CourseMapper {
 	public int deleteCourse(long id);
 	public Course courseDetail(long id);
 	public long courseLastId();
-	
+	public String getSubjectName(long subject_id);
 }
