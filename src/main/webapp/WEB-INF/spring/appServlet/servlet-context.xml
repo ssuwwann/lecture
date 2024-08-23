@@ -30,7 +30,6 @@
     <context:component-scan base-package="org.threefour.homelearn.cart.controller"/>
     <context:component-scan base-package="org.threefour.homelearn.member.controller"/>
     <context:component-scan base-package="org.threefour.homelearn.home.controller"/>
-
     <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <beans:property name="maxUploadSizePerFile" value="3145728"></beans:property>
 
