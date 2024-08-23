@@ -23,6 +23,7 @@
         <typeAlias type="org.threefour.homelearn.member.dto.RefreshToken" alias="RefreshToken"/>
         <typeAlias type="org.threefour.homelearn.file.dto.AttachFile" alias="AttachFile"/>
         <typeAlias type="org.threefour.homelearn.file.dto.FileRequestDTO" alias="FileRequestDTO"/>
+        <typeAlias type="org.threefour.homelearn.home.domain.HomeSearchVO" alias="HomeSearchVO"/>
     </typeAliases>
 
     <mappers>
@@ -34,5 +35,6 @@
         <mapper resource="mappers/member/RefreshToken.xml"/>
         <mapper resource="mappers/file/FileMapper.xml"/>
         <mapper resource="CartMapper.xml"/>
+        <mapper resource="HomeMapper.xml"/>
     </mappers>
 </configuration>
