@@ -1,6 +1,7 @@
 const accessToken = localStorage.getItem("access_token")
 export const SERVER_API = 'http://localhost:8080'
 export const getBasicData = async () => {
+
   if (accessToken !== null) {
     const result = await fetch(`${SERVER_API}/get-info`, {
       method     : "GET",
@@ -12,12 +13,13 @@ export const getBasicData = async () => {
 
     try {
       const basicData = await result.json();
-      console.log("basicData", basicData);
       localStorage.setItem('member', JSON.stringify(basicData));
     } catch (err) {
       console.log('getBasicData', err);
-      if (err.statusCode === 400) {
+      if (err.statusCode === 401) {
         console.log('getBasicData', err);
+        alert('다시 로그인 해주세요')
+        location.href = '/';
         return;
       }
 
@@ -26,8 +28,8 @@ export const getBasicData = async () => {
         localStorage.setItem('access_token', result);
       }
     }
-
   }
+
 }
 
 /**

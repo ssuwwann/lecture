@@ -58,62 +58,51 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-8">
-        <form action="" method="post" enctype="multipart/form-data">
-          <input type="file" name="profileImage" id="profileImageInput" style="display: none">
-          <div class="row">
-            <div class="form-group col-sm-6">
-              <label for="email">이메일</label>
-              <input type="text" name="email" class="form-control" id="email" readonly>
-            </div>
-            <div class="form-group col-sm-6">
-              <label for="createdAt">가입날짜</label>
-              <input type="text" class="form-control" id="createdAt" readonly>
-            </div>
-            <div class="form-group col-sm-6">
-              <label for="nickname">닉네임</label>
-              <input type="text" name="nickname" class="form-control" id="nickname">
-            </div>
-            <div class="form-group col-sm-6">
-              <label for="password">비밀번호</label>
-              <input type="password" name="password" class="form-control" id="password">
-            </div>
-          </div>
-          <button type="submit" class="btn btn-default">정보 수정</button>
-        </form>
-        <div class="container">
-          <h3>수강 목록</h3>
-          <div class="row">
-            <div style="border: 1px solid saddlebrown" class="col-lg-4 col-md-6 col-sm-12">여기 수강 목록들</div>
-            <div style="border: 1px solid saddlebrown" class="col-lg-4 col-md-6 col-sm-12">여기 수강 목록들</div>
-            <div style="border: 1px solid saddlebrown" class="col-lg-4 col-md-6 col-sm-12">여기 수강 목록들</div>
-            <div style="border: 1px solid saddlebrown" class="col-lg-4 col-md-6 col-sm-12">여기 수강 목록들</div>
-            <div style="border: 1px solid saddlebrown" class="col-lg-4 col-md-6 col-sm-12">여기 수강 목록들</div>
-            <div style="border: 1px solid saddlebrown" class="col-lg-4 col-md-6 col-sm-12">여기 수강 목록들</div>
-          </div>
-        </div>
+
+    <%--navbar start--%>
+    <div class="row d-flex justify-content-center" id="navbar">
+      <div class="align-content-center">
+        <button>수강목록 보기</button>
+        <button>결제내역 보기</button>
       </div>
+    </div>
+    <%--navbar end--%>
+
+    <div class="row">
+
+      <%--수강 목록 시작--%>
+      <div class="col-md-8" id="navbarList"></div>
+      <%--수강 목록 끝--%>
+
       <div class="col-md-4">
         <aside class="sidebar">
           <div class="widget contact-info">
             <h3 class="widget-title">Contact info</h3>
             <p>여기다 무엇을 적어야 좋다고 소문이 날까?</p>
-            <div>
-              <h6>Location Info</h6>
-              <span>Address line 1, Avg Centre Point.
-                  Level 5, New Yourk City - USA</span>
-            </div>
-            <div>
-              <h6>Hotline numbers</h6>
-              <a href="tel:+12345678912">+123 4567 8912</a>
-              <a href="tel:+32176542198">+321 7654 2198</a>
-            </div>
-            <div>
-              <h6>Email Us</h6>
-              <a href="mailto:youremail@domain.com">youremail@domain.com</a>
-              <a href="mailto:help@example.com">help@example.com</a>
-            </div>
+
+            <form action="" method="post" enctype="multipart/form-data">
+              <input type="file" name="profileImage" id="profileImageInput" style="display: none">
+              <div>
+                <div>
+                  <label for="email">이메일</label>
+                  <input type="text" name="email" class="form-control" id="email" readonly>
+                </div>
+                <div>
+                  <label for="createdAt">가입날짜</label>
+                  <input type="text" class="form-control" id="createdAt" readonly>
+                </div>
+                <div>
+                  <label for="nickname">닉네임</label>
+                  <input type="text" name="nickname" class="form-control" id="nickname">
+                </div>
+                <div>
+                  <label for="password">비밀번호</label>
+                  <input type="password" name="password" class="form-control" id="password">
+                </div>
+              </div>
+              <button type="submit" class="btn btn-default">정보 수정</button>
+            </form>
+
           </div>
         </aside>
       </div>
