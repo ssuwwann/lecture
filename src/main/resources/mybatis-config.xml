@@ -32,6 +32,7 @@
         <typeAlias alias="RateSubjectAdmin" type="org.threefour.homelearn.admin.domain.RateSubjectAdmin"/>
         <typeAlias alias="RankingSubjectAdmin" type="org.threefour.homelearn.admin.domain.RankingSubjectAdmin"/>
         <typeAlias alias="CourseMemberAdmin" type="org.threefour.homelearn.admin.domain.CourseMemberAdmin"/>
+        <typeAlias alias="Payment" type="org.threefour.homelearn.payment.domain.Payment"/>
     </typeAliases>
 
     <mappers>
@@ -44,5 +45,6 @@
         <mapper resource="mappers/file/FileMapper.xml"/>
         <mapper resource="AdminMapper.xml"/>
         <mapper resource="CartMapper.xml"/>
+        <mapper resource="PaymentMapper.xml"/>
     </mappers>
 </configuration>
