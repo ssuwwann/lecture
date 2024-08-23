@@ -14,10 +14,10 @@
     </insert>
 
     <select id="findByUsername" resultType="MemberResponseDTO">
-        select id, email, password, nickname, created_at, modified_at
+        select<include refid="memberColumns"/>, created_at, modified_at
         from member
         where email = #{username}
-        and delete_yn =1;
+        and delete_yn =0;
     </select>
 
     <update id="updateMemberByMemberid" parameterType="MemberRequestDTO">

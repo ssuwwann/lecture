@@ -1,23 +1,35 @@
 const accessToken = localStorage.getItem("access_token")
 export const SERVER_API = 'http://localhost:8080'
-export const getBasicDate = async () => {
-  const result = await fetch("http://localhost:8080/get-info", {
-    method     : "GET",
-    credentials: "include",
-    headers    : {
-      Authorization: `Bearer ${accessToken}`
-    }
-  })
-  try {
-    const basicData = await result.json();
-    localStorage.setItem('member', JSON.stringify(basicData));
-  } catch (err) {
-    console.log(err)
-    if (accessToken) {
-      const result = await getNewAccessToken();
-      localStorage.setItem('access_token', result);
+export const getBasicData = async () => {
+
+  if (accessToken !== null) {
+    const result = await fetch(`${SERVER_API}/get-info`, {
+      method     : "GET",
+      credentials: "include",
+      headers    : {
+        Authorization: `Bearer ${accessToken}`
+      }
+    })
+
+    try {
+      const basicData = await result.json();
+      localStorage.setItem('member', JSON.stringify(basicData));
+    } catch (err) {
+      console.log('getBasicData', err);
+      if (err.statusCode === 401) {
+        console.log('getBasicData', err);
+        alert('다시 로그인 해주세요')
+        location.href = '/';
+        return;
+      }
+
+      if (accessToken) {
+        const result = await getNewAccessToken();
+        localStorage.setItem('access_token', result);
+      }
     }
   }
+
 }
 
 /**
@@ -35,6 +47,7 @@ export const getAccessToken = async () => {
 /**
  * 엑세스 토큰이 만료되었을 때 리프레시 토큰을 사용해 새로운 엑세스 토큰을 요청할 때
  * getAccessToken() 를 호출해서 똑같이 쿠키를 제거하고 헤더로 엑세스 토큰을 받는다.
+ * @returns {Promise<string>}
  */
 export const getNewAccessToken = async () => {
   await fetch('http://localhost:8080/refresh', {

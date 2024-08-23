@@ -1,6 +1,6 @@
-import {getBasicDate, SERVER_API} from "./request.js";
+import {getBasicData, SERVER_API} from "./request.js";
 
-await getBasicDate();
+await getBasicData();
 
 const data = JSON.parse(localStorage.getItem('member'));
 if (data) {

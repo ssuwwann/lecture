@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.filter.GenericFilterBean;
+import org.threefour.homelearn.member.dto.CustomUserDetails;
 import org.threefour.homelearn.member.dto.RefreshToken;
 import org.threefour.homelearn.member.mapper.RefreshMapper;
 

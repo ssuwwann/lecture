@@ -32,7 +32,6 @@ public class JWTFilter extends OncePerRequestFilter {
 
   private final JWTUtil jwtUtil;
   private final CustomUserDetailsService customUserDetailsService;
-  private final FileMapper fileMapper;
 
   @Override
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -42,7 +41,6 @@ public class JWTFilter extends OncePerRequestFilter {
       accessToken = authorization.substring(7);
     }
 
-    // 토큰 없을 때 => 로그인 x
     if (accessToken.length() == 0 || accessToken == null) {
       filterChain.doFilter(request, response);
       return;

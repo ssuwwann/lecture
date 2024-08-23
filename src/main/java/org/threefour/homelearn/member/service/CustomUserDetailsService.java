@@ -1,6 +1,5 @@
 package org.threefour.homelearn.member.service;
 
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +14,6 @@ import org.threefour.homelearn.member.mapper.MemberMapper;
 import org.threefour.homelearn.member.mapper.MemberRoleMapper;
 import org.threefour.homelearn.member.mapper.RoleMapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,7 +29,9 @@ public class CustomUserDetailsService implements UserDetailsService {
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     // db에서 조회
     MemberResponseDTO member = memberMapper.findByUsername(username);
+
     List<MemberRole> memberRole = memberRoleMapper.findByMemberId(member.getId());
+
     for (MemberRole role : memberRole) {
       List<Role> roles = roleMapper.selectRolesByRoleId(role);
       for (Role r : roles) member.setRoles(r);

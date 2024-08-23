@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:security="http://www.springframework.org/schema/security"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-    ">
+       xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+                           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
     <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
     <bean id="customUserDetailsService" class="org.threefour.homelearn.member.service.CustomUserDetailsService"/>
@@ -15,19 +14,25 @@
     </bean>
     <bean id="logoutFilter" class="org.threefour.homelearn.member.jwt.CustomLogoutFilter"/>
     <bean id="jwtUtil" class="org.threefour.homelearn.member.jwt.JWTUtil"/>
-
     <bean id="jwtFilter" class="org.threefour.homelearn.member.jwt.JWTFilter"/>
     <bean id="ajaxAuthenticationProvider" class="org.threefour.homelearn.member.jwt.AjaxAuthenticationProvider"/>
+
+    <bean id="daoAuthenticationProvider"
+          class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <property name="userDetailsService" ref="customUserDetailsService"/>
+        <property name="passwordEncoder" ref="passwordEncoder"/>
+        <property name="hideUserNotFoundExceptions" value="false"/>
+    </bean>
+
 
     <security:http pattern="/resources/**" security="none"/>
 
     <security:http auto-config="true" use-expressions="true">
         <security:csrf disabled="true"/>
-        <security:intercept-url pattern="/courseForm.do" access="hasRole('TEACHER')"/>
+        <security:intercept-url pattern="/courseForm.do/**" access="hasRole('TEACHER')"/>
         <security:intercept-url pattern="/members/mypage" access="hasRole('MEMBER')"/>
         <security:intercept-url pattern="/files/**" access="hasRole('MEMBER')"/>
         <security:intercept-url pattern="/get-info" access="hasRole('MEMBER')"/>
-        <security:intercept-url pattern="/" access="permitAll()"/>
         <security:intercept-url pattern="/**" access="permitAll()"/>
 
         <security:form-login
@@ -45,15 +50,11 @@
         <security:custom-filter before="CSRF_FILTER" ref="logoutFilter"/>
     </security:http>
 
-
     <context:property-placeholder location="/resources/application.properties"/>
-
 
     <security:authentication-manager alias="authenticationManager">
         <security:authentication-provider ref="ajaxAuthenticationProvider"/>
-        <security:authentication-provider user-service-ref="customUserDetailsService">
-            <security:password-encoder ref="passwordEncoder"/>
-        </security:authentication-provider>
+        <security:authentication-provider ref="daoAuthenticationProvider"/>
     </security:authentication-manager>
 
 </beans>
