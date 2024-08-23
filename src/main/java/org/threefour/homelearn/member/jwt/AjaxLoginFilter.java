@@ -7,12 +7,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.validation.Errors;
 import org.threefour.homelearn.member.dto.CustomUserDetails;
 import org.threefour.homelearn.member.dto.LoginDTO;
 import org.threefour.homelearn.member.dto.RefreshToken;
 import org.threefour.homelearn.member.mapper.RefreshMapper;
 
 import javax.servlet.FilterChain;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -76,7 +78,7 @@ public class AjaxLoginFilter extends AbstractAuthenticationProcessingFilter {
   private Cookie createCookie(String key, String value) {
     Cookie cookie = new Cookie(key, value);
     cookie.setPath("/");
-    cookie.setMaxAge(60 * 60 * 24); // 하루 맞나?..
+    cookie.setMaxAge(60 * 60 * 24);
     cookie.setHttpOnly(true);
     return cookie;
   }
@@ -94,7 +96,9 @@ public class AjaxLoginFilter extends AbstractAuthenticationProcessingFilter {
 
   @Override
   protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
+    // 유저는 있고 비밀번호가 다를 때
     System.out.println("로그인 실패");
     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
   }
+
 }

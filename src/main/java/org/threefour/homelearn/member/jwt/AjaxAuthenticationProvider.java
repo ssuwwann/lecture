@@ -19,12 +19,12 @@ public class AjaxAuthenticationProvider implements AuthenticationProvider {
   public Authentication authenticate(Authentication authentication) throws AuthenticationException {
     String username = authentication.getName();
     String password = authentication.getCredentials().toString();
-
     UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+
     if (!passwordEncoder.matches(password, userDetails.getPassword())) {
-      throw new BadCredentialsException("Bad credentials");
+      throw new BadCredentialsException("Bad credentials!!");
     }
-  
+
     return new AjaxAuthenticationToken(username, password, null);
   }
 

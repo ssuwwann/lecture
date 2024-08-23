@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
@@ -9,12 +9,14 @@
 
 
     <typeAliases>
+		<typeAlias alias="CourseVO" type="org.threefour.homelearn.course.domain.CourseVO"/>
+		<typeAlias alias="Course" type="org.threefour.homelearn.course.domain.Course"/>
+		<typeAlias alias="Pager" type="org.threefour.homelearn.course.domain.Pager"/>
+		<typeAlias alias="Chapter" type="org.threefour.homelearn.chapter.domain.Chapter"/>
         <typeAlias alias="CourseVO" type="org.threefour.homelearn.course.domain.CourseVO"/>
         <typeAlias alias="Course" type="org.threefour.homelearn.course.domain.Course"/>
         <typeAlias alias="Pager" type="org.threefour.homelearn.course.domain.Pager"/>
         <typeAlias alias="Chapter" type="org.threefour.homelearn.chapter.domain.Chapter"/>
-        <typeAlias alias="Cart" type="org.threefour.homelearn.cart.domain.Cart"/>
-        <typeAlias alias="CartCourse" type="org.threefour.homelearn.cart.domain.CartCourse"/>
 
         <typeAlias type="org.threefour.homelearn.member.dto.MemberRequestDTO" alias="MemberRequestDTO"/>
         <typeAlias type="org.threefour.homelearn.member.dto.MemberResponseDTO" alias="MemberResponseDTO"/>
