@@ -1,6 +1,6 @@
-import {SERVER_API, getBasicDate} from "../common/request.js";
+import {SERVER_API, getBasicData} from "../common/request.js";
 
-await getBasicDate();
+await getBasicData();
 
 const data = JSON.parse(localStorage.getItem('member'));
 const h2Ele = document.querySelector('.page-feature h2');

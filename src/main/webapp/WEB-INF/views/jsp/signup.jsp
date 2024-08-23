@@ -106,7 +106,7 @@
       <div class="col-md-6">
         <div class="content-box">
           <h2>Create Account</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sedo<br> eiusmod tempor incididunt dolore.</p>
+          <p>여기 뭐라고 써야하냐?</p>
         </div>
         <form:form class="sl-form" method="post" enctype="multipart/form-data" modelAttribute="memberRequestDTO">
           <input type="file" name="profileImage" id="profileImageInput" style="display: none">
@@ -115,6 +115,11 @@
             <input type="email" name="email" placeholder="example@gmail.com" id="email" required>
             <div class="email-success-message hide">사용할 수 있는 아이디입니다.</div>
             <div class="email-failure-message hide">사용 중인 아이디입니다.</div>
+            <spring:hasBindErrors name="memberRequestDTO">
+              <c:if test="${errors.hasFieldErrors('email')}">
+                <strong>${errors.getFieldError('email').defaultMessage}</strong>
+              </c:if>
+            </spring:hasBindErrors>
           </div>
           <div class="form-group">
             <label for="nickname">닉네임</label>

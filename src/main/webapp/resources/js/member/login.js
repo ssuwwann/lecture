@@ -17,6 +17,17 @@ loginBtnEle.addEventListener('click', async (e) => {
     })
   })
       .then(async (res) => {
+        console.log('뭐여 .. ', res)
+        if (res.status === 500) {
+          alert("회원가입이 되어있지 않습니다.")
+          return;
+        }
+
+        if (res.status === 401) {
+          alert("비밀번호가 틀렸습니다.")
+          return;
+        }
+
         const accessTokenData = await getAccessToken();
         localStorage.setItem("access_token", accessTokenData);
         location.href = "/"
