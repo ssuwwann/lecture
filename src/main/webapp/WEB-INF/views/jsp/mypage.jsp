@@ -52,7 +52,7 @@
           </div>
           <label for="profileImageInput">
             <div>
-              <img src="${pageContext.request.contextPath}/resources/images/member/카메라.png" alt="">
+              <img src="${pageContext.request.contextPath}/resources/images/course/1.jpg" alt="">
             </div>
           </label>
         </div>

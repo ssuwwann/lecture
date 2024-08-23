@@ -1,7 +1,7 @@
 const accessToken = localStorage.getItem("access_token")
-export const SERVER_API = 'http://localhost:8080'
+export const SERVER_API = 'http://localhost:8088'
 export const getBasicDate = async () => {
-  const result = await fetch("http://localhost:8080/get-info", {
+  const result = await fetch(`${SERVER_API}/get-info`, {
     method     : "GET",
     credentials: "include",
     headers    : {

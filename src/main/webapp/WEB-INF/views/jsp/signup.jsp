@@ -97,7 +97,7 @@
     <img src="${pageContext.request.contextPath}/resources/images/vector.png" alt="">
     <label for="profileImageInput">
       <div class="sec-title">
-        <img src="${pageContext.request.contextPath}/resources/images/member/카메라.png" alt="">
+        <img src="${pageContext.request.contextPath}/resources/images/course/1.jpg" alt="">
       </div>
     </label>
   </div>

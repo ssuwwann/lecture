@@ -35,7 +35,7 @@ public class MemberController {
   }
 
   @PostMapping("/signup")
-  public String signup(@Validated @ModelAttribute("memberRequestDTO") MemberRequestDTO dto, BindingResult result, @RequestPart("profileImage") MultipartFile multipartFile) throws ServletException, IOException {
+  public String signup( @ModelAttribute("memberRequestDTO") MemberRequestDTO dto, BindingResult result, @RequestPart("profileImage") MultipartFile multipartFile) throws ServletException, IOException {
     if (result.hasErrors()) {
       result.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
       return "jsp/signup"; // redirect 대신 뷰 이름을 반환
@@ -44,7 +44,7 @@ public class MemberController {
     if (dto.getRole() == null) dto.setRole("ROLE_MEMBER");
     memberService.addMember(dto, multipartFile);
 
-    return "redirect:/members/jsp/login";
+    return "redirect:/members/login";
   }
 
   @GetMapping("/login")
