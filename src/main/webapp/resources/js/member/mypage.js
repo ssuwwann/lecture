@@ -1,18 +1,20 @@
-import {SERVER_API, getBasicDate} from "../common/request.js";
+import {SERVER_API, getBasicData} from "../common/request.js";
 
-await getBasicDate();
+//await getBasicData();
 
 const data = JSON.parse(localStorage.getItem('member'));
 const h2Ele = document.querySelector('.page-feature h2');
 const spanNicknameEle = document.querySelector('.tagline');
 const logoutBtnEle = document.querySelector('#logoutBtn');
 const inputFileEle = document.querySelector('input[type="file"]');
+const lectureRegisterListBtnEle = document.querySelector('#navbar button:first-child');
+const paymentListBtnELe = document.querySelector('#navbar button:last-child');
 
 if (data) {
-  const emailInputEle = document.querySelector("form .row > div:nth-child(1) > input");
-  const modifiedAtInputEle = document.querySelector("form .row> div:nth-child(2) > input");
-  const nicknameInputEle = document.querySelector("form .row> div:nth-child(3) > input");
-  const passwordInputEle = document.querySelector("form .row> div:nth-child(4) > input");
+  const emailInputEle = document.querySelector('#email');
+  const createdAtInputEle = document.querySelector('#createdAt');
+  const nicknameInputEle = document.querySelector('#nickname');
+  const passwordInputEle = document.querySelector('#password');
   const imgEle = document.querySelector('img#profileImage');
   const filePath = data?.attachFile?.filePath;
   const saveName = data?.attachFile?.saveName;
@@ -21,7 +23,7 @@ if (data) {
   spanNicknameEle.innerHTML = `${data.nickname}님 마이페이지`
 
   emailInputEle.value = `${data.email}`
-  modifiedAtInputEle.value = `${data.createdAt}`.split(" ")[0] || undefined
+  createdAtInputEle.value = `${data.createdAt}`.split(" ")[0] || undefined
   nicknameInputEle.value = `${data.nickname}`
   passwordInputEle.value = `${data.password}`
 
@@ -37,10 +39,31 @@ if (data) {
           const blob = await result.blob();
           const url = URL.createObjectURL(blob);
           imgEle.setAttribute('src', url);
+          lectureRegisterListBtnEle.click();
         })
   }
-
 }
+
+lectureRegisterListBtnEle.addEventListener('click', async () => {
+  const response = await fetch(`${SERVER_API}/resources/common/jsp/nav/lecture-register-list.jsp`)
+  const result = await response.text();
+  const navbarList = document.querySelector('#navbarList');
+
+  if (navbarList.hasChildNodes()) navbarList.replaceChildren();
+
+  navbarList.innerHTML = result;
+
+})
+
+paymentListBtnELe.addEventListener('click', async () => {
+  const response = await fetch(`${SERVER_API}/resources/common/jsp/nav/payment-list.jsp`)
+  const result = await response.text();
+  const navbarList = document.querySelector('#navbarList');
+
+  if (navbarList.hasChildNodes()) navbarList.replaceChildren();
+
+  navbarList.innerHTML = result;
+})
 
 logoutBtnEle.addEventListener('click', () => {
   fetch(`${SERVER_API}/members/logout`)

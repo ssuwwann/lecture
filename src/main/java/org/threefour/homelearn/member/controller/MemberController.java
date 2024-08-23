@@ -3,6 +3,7 @@ package org.threefour.homelearn.member.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Map;
 
 @Controller
@@ -35,16 +37,21 @@ public class MemberController {
   }
 
   @PostMapping("/signup")
-  public String signup(@Validated @ModelAttribute("memberRequestDTO") MemberRequestDTO dto, BindingResult result, @RequestPart("profileImage") MultipartFile multipartFile) throws ServletException, IOException {
-    if (result.hasErrors()) {
-      result.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
+  public String signup(@Validated @ModelAttribute("memberRequestDTO") MemberRequestDTO dto, BindingResult errors, @RequestPart("profileImage") MultipartFile multipartFile) throws ServletException, IOException {
+    if (errors.hasErrors()) {
+      errors.getAllErrors().forEach(error -> System.out.println(error.getDefaultMessage()));
       return "jsp/signup"; // redirect 대신 뷰 이름을 반환
     }
 
     if (dto.getRole() == null) dto.setRole("ROLE_MEMBER");
-    memberService.addMember(dto, multipartFile);
+    try {
+      memberService.addMember(dto, multipartFile);
+    } catch (DataIntegrityViolationException scv) {
+      errors.rejectValue("email", "error.memberRequestDTO", "아이디 중복입니다.");
+      return "jsp/signup";
+    }
 
-    return "redirect:/members/jsp/login";
+    return "redirect:/members/login";
   }
 
   @GetMapping("/login")

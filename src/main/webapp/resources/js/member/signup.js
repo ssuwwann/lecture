@@ -41,7 +41,11 @@ passwordEle2.addEventListener('keyup', () => {
       provePasswordState2 = true
     } else {
       passwordMismatchMessageEle.classList.remove('hide');
-      provePasswordState2 = false
+      if (!provePasswordState1) {
+        provePasswordState2 = true;
+      } else {
+        provePasswordState2 = false;
+      }
     }
 
   } else {

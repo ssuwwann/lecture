@@ -26,7 +26,7 @@
     <div id="preloader">
       <div id="status"></div>
     </div>
-    
+
     <!-- Header strat -->
     <header class="header abs-header">
       <div class="container">
@@ -124,9 +124,9 @@
               <button type="button" class="btn btn-filled btn-round" onclick="check()">개설하기</button>
               <p class="notice">이미 로그인한 아이디가 있습니까? <a href="login.html">로그인 하러가기</a></p>
             </form>
-          </div>          
+          </div>
         </div>
-      </div>      
+      </div>
     </section>
   <!-- Login / Registration end -->
 
@@ -138,7 +138,7 @@
             <div class="col-md-3 col-sm-6">
               <div class="widget widget-navigation">
                 <h4 class="widget-title">Information for</h4>
-                <ul>                  
+                <ul>
                   <li><a href="#">Prospective undergraduates</a></li>
                   <li><a href="#">Prospective graduate students</a></li>
                   <li><a href="#">Businesses/Partnerships</a></li>
@@ -150,7 +150,7 @@
             <div class="col-md-3 col-sm-6">
               <div class="widget widget-navigation">
                 <h4 class="widget-title">Quick Links</h4>
-                <ul>                  
+                <ul>
                   <li><a href="#">Contact Searches</a></li>
                   <li><a href="#">Jobs and Vacancies</a></li>
                   <li><a href="#">University images</a></li>
@@ -186,14 +186,14 @@
           </div>
         </div>
       </div>
-      
+
 
       <div class="foo-btm">
         <div class="container">
           <p class="copyright">Copyright Â© 2019 <a href="#">themeies.com</a>. All rights reserved.</p>
         </div>
       </div>
-      
+
     </footer>
     <!-- Footer end -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -245,7 +245,7 @@
 
               return false;
 				}
-			
+
 			document.input.submit();
 		  }
 	</script>

@@ -31,7 +31,7 @@ public class RefreshService {
 
   public void addRefreshToken(String username, String newRefreshToken, Long expiredMs) {
     Date date = new Date(System.currentTimeMillis());
-    Timestamp timestamp = new Timestamp(date.getTime());
+    Timestamp timestamp = new Timestamp(date.getTime() + expiredMs);
     RefreshToken refreshToken = new RefreshToken();
     refreshToken.setUsername(username);
     refreshToken.setRefreshToken(newRefreshToken);

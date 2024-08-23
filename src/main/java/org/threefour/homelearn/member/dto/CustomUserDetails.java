@@ -53,7 +53,6 @@ public class CustomUserDetails implements UserDetails {
     return member.getModifiedAt();
   }
 
-  public AttachFile getAttachFile() {return member.getAttachFile();}
 
   @Override
   public boolean isAccountNonExpired() {
