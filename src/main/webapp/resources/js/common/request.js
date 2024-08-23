@@ -9,18 +9,24 @@ export const getBasicData = async () => {
         Authorization: `Bearer ${accessToken}`
       }
     })
-  }
 
-  try {
-    const basicData = await result.json();
-    localStorage.setItem('member', JSON.stringify(basicData));
-  } catch (err) {
-    if (err.statusCode === 400) alert('getBasicData', err)
+    try {
+      const basicData = await result.json();
+      console.log("basicData", basicData);
+      localStorage.setItem('member', JSON.stringify(basicData));
+    } catch (err) {
+      console.log('getBasicData', err);
+      if (err.statusCode === 400) {
+        console.log('getBasicData', err);
+        return;
+      }
 
-    if (accessToken) {
-      const result = await getNewAccessToken();
-      localStorage.setItem('access_token', result);
+      if (accessToken) {
+        const result = await getNewAccessToken();
+        localStorage.setItem('access_token', result);
+      }
     }
+
   }
 }
 
@@ -39,6 +45,7 @@ export const getAccessToken = async () => {
 /**
  * 엑세스 토큰이 만료되었을 때 리프레시 토큰을 사용해 새로운 엑세스 토큰을 요청할 때
  * getAccessToken() 를 호출해서 똑같이 쿠키를 제거하고 헤더로 엑세스 토큰을 받는다.
+ * @returns {Promise<string>}
  */
 export const getNewAccessToken = async () => {
   await fetch('http://localhost:8080/refresh', {
