@@ -25,6 +25,7 @@
         <typeAlias type="org.threefour.homelearn.member.dto.RefreshToken" alias="RefreshToken"/>
         <typeAlias type="org.threefour.homelearn.file.dto.AttachFile" alias="AttachFile"/>
         <typeAlias type="org.threefour.homelearn.file.dto.FileRequestDTO" alias="FileRequestDTO"/>
+        <typeAlias type="org.threefour.homelearn.home.domain.HomeSearchVO" alias="HomeSearchVO"/>
 
         <typeAlias alias="MemberAdmin" type="org.threefour.homelearn.admin.domain.MemberAdmin"/>
         <typeAlias alias="CoursesAdmin" type="org.threefour.homelearn.admin.domain.CoursesAdmin"/>
@@ -45,6 +46,7 @@
         <mapper resource="mappers/file/FileMapper.xml"/>
         <mapper resource="AdminMapper.xml"/>
         <mapper resource="CartMapper.xml"/>
+        <mapper resource="HomeMapper.xml"/>
         <mapper resource="PaymentMapper.xml"/>
     </mappers>
 </configuration>

@@ -2,30 +2,7 @@
 
 
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Favicon icons -->
-    <link href="resources/images/favicon.png" rel="shortcut icon">
-
-    <!-- All CSS -->
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="resources/css/themify-icons.css">
-    <link rel="stylesheet" href="resources/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="resources/css/style.css">
-
-    <title>Elearning - Tutor, Education HTML Template</title>
-  </head>
-  <body class="courses-page">
-
-    <!-- Preloader -->
-    <div id="preloader">
-      <div id="status"></div>
-    </div>
+<
 
     <!-- Header strat -->
     <header class="header">
