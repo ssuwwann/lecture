@@ -11,7 +11,6 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 public class Payment {
-
   private long id;
   private long orderer_id;
   private String imp_uid;
