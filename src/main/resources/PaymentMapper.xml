@@ -7,7 +7,7 @@
 
     <insert id="insertPayment" parameterType="Payment">
         INSERT INTO PAYMENT_HISTORY (orderer_id, imp_uid, paid_amount, refunded_amount, remained_amount, created_at)
-        VALUES (#{ordered_id}, #{imp_uid}, #{paid_amount}, #{refunded_amount}, #{remained_amount}, now())
+        VALUES (#{orderer_id}, #{imp_uid}, #{paid_amount}, #{refunded_amount}, #{remained_amount}, now())
     </insert>
 
     <select id="selectPaymentByImpUid" parameterType="String" resultType="Payment">
