@@ -1,14 +1,14 @@
-import {SERVER_API, getBasicData} from "../common/request.js";
-
-//await getBasicData();
+import {SERVER_API} from "../common/request.js";
+import {getCoursesByMemberId} from "../member/member-api-request.js"
 
 const data = JSON.parse(localStorage.getItem('member'));
 const h2Ele = document.querySelector('.page-feature h2');
 const spanNicknameEle = document.querySelector('.tagline');
 const logoutBtnEle = document.querySelector('#logoutBtn');
 const inputFileEle = document.querySelector('input[type="file"]');
-const lectureRegisterListBtnEle = document.querySelector('#navbar button:first-child');
-const paymentListBtnELe = document.querySelector('#navbar button:last-child');
+const courseRegisterListBtnEle = document.querySelector('#navbar button:first-child');
+const paymentListBtnELe = document.querySelector('#navbar button:nth-child(2)');
+const paymentHistoryListBtnELe = document.querySelector('#navbar button:last-child');
 
 if (data) {
   const emailInputEle = document.querySelector('#email');
@@ -39,21 +39,39 @@ if (data) {
           const blob = await result.blob();
           const url = URL.createObjectURL(blob);
           imgEle.setAttribute('src', url);
-          lectureRegisterListBtnEle.click();
         })
   }
 }
 
-lectureRegisterListBtnEle.addEventListener('click', async () => {
-  const response = await fetch(`${SERVER_API}/resources/common/jsp/nav/lecture-register-list.jsp`)
-  const result = await response.text();
+courseRegisterListBtnEle.addEventListener('click', async () => {
+  const listData = await fetch(`${SERVER_API}/resources/common/jsp/nav/course-register-list.jsp`)
+  const listResult = await listData.text();
+  const pagingData = await getCoursesByMemberId(1);
   const navbarList = document.querySelector('#navbarList');
+  let html = '';
 
   if (navbarList.hasChildNodes()) navbarList.replaceChildren();
+  navbarList.innerHTML = listResult;
 
-  navbarList.innerHTML = result;
+  console.log("뀽뀽 카리나", pagingData)
+
+  if (pagingData) {
+    for (let element of pagingData.elements) {
+      html += ` <div class="col-xs-12 col-lg-6 col-xl-4">`;
+      html += ` <div class="card" style="width: 100%;">`;
+      html += `  <img src="$/resources/images/member/금발카리나.jpg" class="card-img-top" alt="...">`
+      html += `<div class="card-body">`;
+      html += `<h5 class="card-title">카리나와 연애하는법 같은게 있을까??</h5>`;
+      html += `<p>평점 </p>`;
+      html += `<a href="#" class="btn btn-primary">해당 강의 uri</a>`;
+      html += `</div></div></div>`;
+    }
+    document.querySelector('#course-list').innerHTML = html;
+  }
 
 })
+courseRegisterListBtnEle.click();
+
 
 paymentListBtnELe.addEventListener('click', async () => {
   const response = await fetch(`${SERVER_API}/resources/common/jsp/nav/payment-list.jsp`)
@@ -63,6 +81,18 @@ paymentListBtnELe.addEventListener('click', async () => {
   if (navbarList.hasChildNodes()) navbarList.replaceChildren();
 
   navbarList.innerHTML = result;
+
+})
+
+paymentHistoryListBtnELe.addEventListener('click', async () => {
+  const response = await fetch(`${SERVER_API}/resources/common/jsp/nav/payment-history-list.jsp`)
+  const result = await response.text();
+  const navbarList = document.querySelector('#navbarList');
+
+  if (navbarList.hasChildNodes()) navbarList.replaceChildren();
+
+  navbarList.innerHTML = result;
+
 })
 
 logoutBtnEle.addEventListener('click', () => {

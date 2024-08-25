@@ -19,6 +19,8 @@
 
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member/mypage.css">
   <script defer type="module" src="${pageContext.request.contextPath}/resources/js/member/mypage.js"></script>
+  <script defer type="module"
+          src="${pageContext.request.contextPath}/resources/js/member/member-api-request.js"></script>
   <title>Elearning - Tutor, Education HTML Template</title>
 </head>
 <body>
@@ -52,7 +54,7 @@
           </div>
           <label for="profileImageInput">
             <div>
-              <img src="${pageContext.request.contextPath}/resources/images/course/1.jpg" alt="">
+              <img src="${pageContext.request.contextPath}/resources/images/member/카메라.png" alt="">
             </div>
           </label>
         </div>
@@ -62,8 +64,9 @@
     <%--navbar start--%>
     <div class="row d-flex justify-content-center" id="navbar">
       <div class="align-content-center">
-        <button>수강목록 보기</button>
-        <button>결제내역 보기</button>
+        <button type="button" class="btn btn-primary">수강목록 보기</button>
+        <button type="button" class="btn btn-primary">결제내역 보기</button>
+        <button type="button" class="btn btn-primary">환불내역 보기</button>
       </div>
     </div>
     <%--navbar end--%>
