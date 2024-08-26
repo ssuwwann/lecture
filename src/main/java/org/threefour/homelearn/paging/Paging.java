@@ -21,11 +21,13 @@ public class Paging<E> {
   public Paging(int totalElements, int currentPage, List<E> elements) {
     this.totalElements = totalElements;
     this.currentPage = currentPage;
-    this.elementSize = 9;
+    // 아래의 숫자를 바꿔줘라,
+    this.elementSize = 1;
     this.pageSize = 5;
     this.elements = elements;
 
-    totalPages = ((totalElements - 1) / 9) + 1;
+    // 아래의 숫자를 바꿔줘라, ((totalElements - 1) / 요부분) + 1;
+    totalPages = ((totalElements - 1) / 1) + 1;
 
     if (currentPage > totalPages) currentPage = totalPages;
 
@@ -35,6 +37,7 @@ public class Paging<E> {
     if (endPage > totalPages) endPage = totalPages;
 
     previousPage = startPage != 1;
-    nextPage = (endPage * 9) < totalElements;
+    // 아래의 숫자를 바꿔줘라,
+    nextPage = (endPage * 1) < totalElements;
   }
 }

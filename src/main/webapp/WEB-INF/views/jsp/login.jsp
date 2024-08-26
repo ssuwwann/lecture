@@ -16,7 +16,9 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.carousel.min.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/member/login.css">
   <script type="module" defer src="${pageContext.request.contextPath}/resources/js/member/login.js"></script>
+  <script defer src="${pageContext.request.contextPath}/resources/js/member/modal.js"></script>
 
   <title>Elearning - Tutor, Education HTML Template</title>
 </head>
@@ -56,14 +58,69 @@
             <input type="checkbox" class="form-check-input">
             <label class="form-check-label">Remember Password</label>
           </div>
-          <button id="loginBtn" class="btn btn-filled btn-round"><span class="bh"></span> <span>Login</span></button>
-          <p class="notice">Don’t have an account? <a href="signup">Signup Now</a></p>
+          <button id="loginBtn" class="btn btn-filled btn-round"><span class="bh"></span> <span>로그인</span></button>
+          <button id="findPasswordBtn" class="btn btn-filled btn-round"><span class="bh"></span> <span>비밀번호 찾기</span>
+          </button>
+        </form>
+        <p class="notice">Don’t have an account?
+          <button id="signupBtn" class="btn btn-primary">회원가입</button>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- Login / Registration end -->
+
+<%--회원가입 모달 시작--%>
+<div id="modalContainer">
+  <div id="modal" class="modal-overlay">
+    <div class="modal-window">
+      <div class="title">
+        <h2>회원가입</h2>
+      </div>
+      <div class="close-area">X</div>
+      <div class="content">
+        <h4>이메일로 회원가입</h4>
+        <form class="content-input">
+          <input name="email" type="text" placeholder="이메일을 입력해주세요.">
+          <button>이메일 확인</button>
+        </form>
+      </div>
+      <div>
+      <span class="socials">
+        <a href="">
+          <img src="${pageContext.request.contextPath}/resources/images/member/구글.png" alt="">
+        </a>
+      </span>
+        <span class="socials">
+          <a href=""><img src="${pageContext.request.contextPath}/resources/images/member/네이버.png" alt=""></a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+<%--회원가입 모달 끝--%>
+
+<%--비밀번호 찾기 모달 시작--%>
+<div id="modalContainer">
+  <div id="findPasswordModal" class="modal-overlay">
+    <div class="modal-window">
+      <div class="title">
+        <h2>비밀번호 찾기</h2>
+      </div>
+      <div class="close-area">X</div>
+      <div class="content">
+        <h4>이메일을 작성해주세요.</h4>
+        <form class="content-input">
+          <input name="email" type="text" placeholder="이메일을 입력해주세요.">
+          <button>이메일 확인</button>
         </form>
       </div>
     </div>
   </div>
-</section>
-<!-- Login / Registration end -->
+</div>
+<%--비밀번호 찾기 모달 끝--%>
 
 <!-- Footer strat -->
 <footer class="footer">

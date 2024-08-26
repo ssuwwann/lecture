@@ -57,7 +57,8 @@
           <input type="file" name="profileImage" id="profileImageInput" style="display: none">
           <div class="form-group">
             <label for="email">이메일</label>
-            <input type="email" name="email" placeholder="example@gmail.com" id="email" required>
+            <input type="email" name="email" placeholder="example@gmail.com" id="email" value="${email}" required
+                   readonly>
             <div class="email-success-message hide">사용할 수 있는 아이디입니다.</div>
             <div class="email-failure-message hide">사용 중인 아이디입니다.</div>
             <spring:hasBindErrors name="memberRequestDTO">
